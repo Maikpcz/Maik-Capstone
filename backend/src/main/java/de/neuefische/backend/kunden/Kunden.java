@@ -2,7 +2,6 @@ package de.neuefische.backend.kunden;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -18,6 +17,5 @@ public class Kunden {
     private String grund;
     private String beschreibung;
     private String notizen;
-    private String bild;
     private String ownerID;
 }

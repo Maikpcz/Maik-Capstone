@@ -1,7 +1,12 @@
 package de.neuefische.backend.kunden;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class KundenStatus {
-    private final String Offen = "OFFEN";
-    private final String Angenommen = "ANGENOMMEN";
-    private final String Abgelehnt = "ABGELEHNT";
+    public static final String OFFEN = "OFFEN";
+    public static final String ANGENOMMEN = "ANGENOMMEN";
 }
