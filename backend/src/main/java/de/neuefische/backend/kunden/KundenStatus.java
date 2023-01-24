@@ -1,7 +1,7 @@
 package de.neuefische.backend.kunden;
 
 public class KundenStatus {
-    private final String Offen = "OFFEN";
-    private final String Angenommen = "ANGENOMMEN";
-    private final String Abgelehnt = "ABGELEHNT";
+    public static final String Offen = "OFFEN";
+    public static final String Angenommen = "ANGENOMMEN";
+    public static final String Abgelehnt = "ABGELEHNT";
 }
