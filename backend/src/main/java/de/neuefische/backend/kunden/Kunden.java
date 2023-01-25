@@ -17,5 +17,5 @@ public class Kunden {
     private String grund;
     private String beschreibung;
     private String notizen;
-    private String ownerID;
+    private String createdBy;
 }

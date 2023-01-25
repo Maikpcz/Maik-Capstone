@@ -1,9 +1,8 @@
 package de.neuefische.backend.kunden;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
+
 @NoArgsConstructor
 
 public class KundenStatus {

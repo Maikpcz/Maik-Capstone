@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/app-user")
+@RequestMapping("/api/app-users")
 
 public class AppUserController {
     private final AppUserService appUserService;
