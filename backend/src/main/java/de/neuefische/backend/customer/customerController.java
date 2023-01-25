@@ -1,4 +1,4 @@
-package de.neuefische.backend.kunden;
+package de.neuefische.backend.customer;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/kunden")
+@RequestMapping("/api/customer")
 
 public class customerController {
 

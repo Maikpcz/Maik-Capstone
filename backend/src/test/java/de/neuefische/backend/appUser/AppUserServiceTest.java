@@ -20,11 +20,35 @@ class AppUserServiceTest {
     private PasswordEncoder passwordEncoder;
 
     @Test
-    void whenCreateNewAppUser_thenReturNewAppUser(){
+    void whenCreateNewAppUser_thenReturnNewAppUser(){
         //given
         AppUser signup = new AppUser(
                 "1","maik"
                 ,"123",null
+        );
+        AppUser signupend = new AppUser(
+                "1","maik"
+                ,"","BASIC"
+        );
+        AppUserRepository appUserRepository = Mockito.mock(AppUserRepository.class);
+
+        AppUserService appUserService = new AppUserService(appUserRepository,passwordEncoder);
+        Mockito.when(appUserRepository.findByUsername(signup.getUsername())).thenReturn(Optional.empty());
+        //when
+        AppUser actual = appUserService.create(signup);
+        //then
+        Assertions.assertEquals(actual,signupend);
+
+        Mockito.verify(appUserRepository).findByUsername("maik");
+
+    }
+
+    @Test
+    void whenCreateNewAppUserHasAdminRole_thenReturnNewAppUserWithBasicRole(){
+        //given
+        AppUser signup = new AppUser(
+                "1","maik"
+                ,"123","ADMIN"
         );
         AppUser signupend = new AppUser(
                 "1","maik"
@@ -128,5 +152,4 @@ class AppUserServiceTest {
 
         Mockito.verify(appUserRepository).findByUsername("maik");
     }
-
 }
