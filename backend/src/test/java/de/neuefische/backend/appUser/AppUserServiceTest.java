@@ -60,7 +60,7 @@ class AppUserServiceTest {
         Mockito.when(appUserRepository.findByUsername(signup.getUsername())).thenReturn(Optional.of(signupend));
         //when //then
         try {
-            AppUser actual = appUserService.create(signup);
+            appUserService.create(signup);
         } catch (ResponseStatusException e) {
             Assertions.assertEquals(e.getStatus(), HttpStatus.CONFLICT);
         }
