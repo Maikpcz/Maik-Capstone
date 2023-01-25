@@ -1,4 +1,4 @@
-package de.neuefische.backend.kunden;
+package de.neuefische.backend.customer;
 
 import de.neuefische.backend.appUser.AppUserService;
 import lombok.RequiredArgsConstructor;
