@@ -8,14 +8,14 @@ import lombok.Data;
 public class customer {
     private String id;
     private String firstname;
-    private String surnname;
-    private String adress;
+    private String surname;
+    private String address;
     private String postalCode;
-    private int phonenumber;
+    private long phonenumber;
     private String status;
     private int credit;
     private String reason;
-    private String describtion;
+    private String description;
     private String notes;
     private String createdBy;
 }
