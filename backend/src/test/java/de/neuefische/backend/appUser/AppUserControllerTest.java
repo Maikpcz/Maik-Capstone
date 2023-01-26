@@ -62,7 +62,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
                 );
 
     }
-
     @Test
     void SignUp_whenAppUserSignUp_thenCreateNewAppUser() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/app-users")
