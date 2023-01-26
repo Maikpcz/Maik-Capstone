@@ -10,20 +10,20 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 
-public class customerService {
+public class CustomerService {
 
-    private final customerRepository customerRepository;
+    private final CustomerRepository customerRepository;
     private final AppUserService appUserService;
 
-    public List<customer> getAll() {
+    public List<Customer> getAll() {
         return customerRepository.findAllByCreatedBy(
                 appUserService.getAuthenticatedUser().getId()
         );
     }
 
-    public customer create(customer customer) {
+    public Customer create(Customer customer) {
         customer.setCreatedBy(appUserService.getAuthenticatedUser().getId());
-        customer.setStatus(customerStatus.OPEN);
+        customer.setStatus(CustomerStatus.OPEN);
         return customerRepository.save(customer);
     }
 
@@ -31,7 +31,7 @@ public class customerService {
         customerRepository.deleteById(id);
     }
 
-    public Optional<customer> findByID(String id) {
+    public Optional<Customer> findByID(String id) {
         return customerRepository.findById(id);
     }
 }

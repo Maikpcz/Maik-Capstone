@@ -10,22 +10,22 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("/api/customer")
 
-public class customerController {
+public class CustomerController {
 
-    private final customerService customerService;
+    private final CustomerService customerService;
 
     @GetMapping
-    public List<customer> getAll(){
+    public List<Customer> getAll(){
         return customerService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<customer> getById(@RequestBody String id){
+    public Optional<Customer> getById(@PathVariable String id){
         return customerService.findByID(id);
     }
 
     @PostMapping
-    public customer create (@RequestBody customer customer) {
+    public Customer create (@RequestBody Customer customer) {
         return customerService.create(customer);
     }
 

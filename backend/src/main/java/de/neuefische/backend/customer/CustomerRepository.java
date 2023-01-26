@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface customerRepository extends MongoRepository<customer,String> {
-    List<customer> findAllByCreatedBy(String createdBy);
+public interface CustomerRepository extends MongoRepository<Customer,String> {
+    List<Customer> findAllByCreatedBy(String createdBy);
 }
