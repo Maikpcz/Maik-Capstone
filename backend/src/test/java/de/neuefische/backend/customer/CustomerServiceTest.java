@@ -199,4 +199,17 @@ class CustomerServiceTest {
 
         verify(customerRepository).findById("5");
     }
+    @Test
+    void Delete_DeleteWhenAppUserGiveID_thenReturnVoid(){
+        //given
+        CustomerRepository customerRepository = mock(CustomerRepository.class);
+        AppUserService appUserService = mock(AppUserService.class);
+        CustomerService customerService = new CustomerService(customerRepository,appUserService);
+
+        Mockito.doNothing().when(customerRepository).deleteById("1");
+        //when
+        customerService.deleteById("1");
+        //then
+        verify(customerRepository).deleteById("1");
+    }
 }
