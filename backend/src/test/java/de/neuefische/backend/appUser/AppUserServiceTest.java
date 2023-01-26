@@ -24,11 +24,11 @@ class AppUserServiceTest {
         //given
         AppUser signup = new AppUser(
                 "1","maik"
-                ,"123",null
+                ,"123"
         );
         AppUser signupend = new AppUser(
                 "1","maik"
-                ,"","BASIC"
+                ,""
         );
         AppUserRepository appUserRepository = Mockito.mock(AppUserRepository.class);
 
@@ -48,11 +48,11 @@ class AppUserServiceTest {
         //given
         AppUser signup = new AppUser(
                 "1","maik"
-                ,"123","ADMIN"
+                ,"123"
         );
         AppUser signupend = new AppUser(
                 "1","maik"
-                ,"","BASIC"
+                ,""
         );
         AppUserRepository appUserRepository = Mockito.mock(AppUserRepository.class);
 
@@ -72,11 +72,11 @@ class AppUserServiceTest {
         //given
         AppUser signup = new AppUser(
                 "1","maik"
-                ,"123",null
+                ,"123"
         );
         AppUser signupend = new AppUser(
                 "1","maik"
-                ,"","BASIC"
+                ,""
         );
         AppUserRepository appUserRepository = Mockito.mock(AppUserRepository.class);
 
@@ -95,7 +95,7 @@ class AppUserServiceTest {
         //given
         AppUser existuser = new AppUser(
                 "1","maik"
-                ,"123",null
+                ,"123"
         );
         AppUserRepository appUserRepository = Mockito.mock(AppUserRepository.class);
 
@@ -116,7 +116,7 @@ class AppUserServiceTest {
         //given
         AppUser existuser = new AppUser(
                 "1","maik"
-                ,"123",null
+                ,"123"
         );
         AppUserRepository appUserRepository = Mockito.mock(AppUserRepository.class);
 
@@ -137,7 +137,7 @@ class AppUserServiceTest {
         //given
         AppUser existuser = new AppUser(
                 "1", "maik"
-                , "123", null
+                , "123"
         );
         AppUserRepository appUserRepository = Mockito.mock(AppUserRepository.class);
 

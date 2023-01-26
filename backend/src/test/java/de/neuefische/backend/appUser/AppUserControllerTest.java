@@ -71,8 +71,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
                            {
                            "id": "1",
                            "username": "user",
-                           "password": "password",
-                           "role": "null"
+                           "password": "password"
                             }
                             """)).andExpectAll(
                                     MockMvcResultMatchers.status().isOk(),
@@ -80,8 +79,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
                                               {
                                               "id": "1",
                                               "username": "user",
-                                              "password": "",
-                                              "role": "BASIC"
+                                              "password": ""
                                               }
                                               """)
         );
@@ -95,8 +93,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
                            {
                            "id": "1",
                            "username": "user",
-                           "password": "123",
-                           "role": "ADMIN"
+                           "password": "123"
                             }
                             """)).andExpectAll(
                 MockMvcResultMatchers.status().isOk(),
@@ -104,8 +101,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
                                               {
                                               "id": "1",
                                               "username": "user",
-                                              "password": "",
-                                              "role": "BASIC"
+                                              "password": ""
                                               }
                                               """)
         );
@@ -121,5 +117,4 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
                 MockMvcResultMatchers.status().isConflict()
         );
     }
-
 }
