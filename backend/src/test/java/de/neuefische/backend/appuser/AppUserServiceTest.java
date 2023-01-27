@@ -1,4 +1,4 @@
-package de.neuefische.backend.appUser;
+package de.neuefische.backend.appuser;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,12 +23,14 @@ class AppUserServiceTest {
     void whenCreateNewAppUser_thenReturnNewAppUser(){
         //given
         AppUser signup = new AppUser(
-                "1","maik"
-                ,"123"
+                "1",
+                "maik",
+                "123"
         );
         AppUser signupend = new AppUser(
-                "1","maik"
-                ,""
+                "1",
+                "maik",
+                ""
         );
         AppUserRepository appUserRepository = Mockito.mock(AppUserRepository.class);
 
@@ -47,8 +49,9 @@ class AppUserServiceTest {
     void whenCreateNewAppUserHasAdminRole_thenReturnNewAppUserWithBasicRole(){
         //given
         AppUser signup = new AppUser(
-                "1","maik"
-                ,"123"
+                "1",
+                "maik",
+                "123"
         );
         AppUser signupend = new AppUser(
                 "1","maik"
@@ -71,11 +74,13 @@ class AppUserServiceTest {
     void whenCreateNewAppUserIsExist_thenReturn409Conflict(){
         //given
         AppUser signup = new AppUser(
-                "1","maik"
+                "1",
+                "maik"
                 ,"123"
         );
         AppUser signupend = new AppUser(
-                "1","maik"
+                "1",
+                "maik"
                 ,""
         );
         AppUserRepository appUserRepository = Mockito.mock(AppUserRepository.class);
@@ -94,7 +99,8 @@ class AppUserServiceTest {
     void whenLoginIsSuccessfully_thenReturnUserWithoutPassword(){
         //given
         AppUser existuser = new AppUser(
-                "1","maik"
+                "1",
+                "maik"
                 ,"123"
         );
         AppUserRepository appUserRepository = Mockito.mock(AppUserRepository.class);
@@ -115,7 +121,8 @@ class AppUserServiceTest {
     void whenLoginIsFail_thenReturnNull(){
         //given
         AppUser existuser = new AppUser(
-                "1","maik"
+                "1",
+                "maik"
                 ,"123"
         );
         AppUserRepository appUserRepository = Mockito.mock(AppUserRepository.class);
@@ -136,7 +143,8 @@ class AppUserServiceTest {
     void whenMeIsSuccessfully_thenReturnUserWithoutPassword() {
         //given
         AppUser existuser = new AppUser(
-                "1", "maik"
+                "1",
+                "maik"
                 , "123"
         );
         AppUserRepository appUserRepository = Mockito.mock(AppUserRepository.class);

@@ -1,7 +1,7 @@
 package de.neuefische.backend.customer;
 
-import de.neuefische.backend.appUser.AppUser;
-import de.neuefische.backend.appUser.AppUserService;
+import de.neuefische.backend.appuser.AppUser;
+import de.neuefische.backend.appuser.AppUserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -57,7 +57,7 @@ class CustomerServiceTest {
                 "Musterweg",
                 "20001",
                 1234567890,
-                "OPEN",
+                "Open",
                 5000,
                 "",
                 "",
@@ -198,5 +198,18 @@ class CustomerServiceTest {
         Assertions.assertEquals(actual,Optional.empty());
 
         verify(customerRepository).findById("5");
+    }
+    @Test
+    void Delete_DeleteWhenAppUserGiveID_thenReturnVoid(){
+        //given
+        CustomerRepository customerRepository = mock(CustomerRepository.class);
+        AppUserService appUserService = mock(AppUserService.class);
+        CustomerService customerService = new CustomerService(customerRepository,appUserService);
+
+        Mockito.doNothing().when(customerRepository).deleteById("1");
+        //when
+        customerService.deleteById("1");
+        //then
+        verify(customerRepository).deleteById("1");
     }
 }
