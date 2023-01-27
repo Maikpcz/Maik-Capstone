@@ -1,6 +1,6 @@
 package de.neuefische.backend.customer;
 
-import de.neuefische.backend.appUser.AppUserService;
+import de.neuefische.backend.appuser.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

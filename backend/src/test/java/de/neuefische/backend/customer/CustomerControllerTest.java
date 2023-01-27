@@ -23,7 +23,7 @@ class CustomerControllerTest {
 
     @Test
     void getAll_whenAppUserNotLoggedIn_thenReturn401() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/customer"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/customers"))
                 .andExpectAll(
                         MockMvcResultMatchers.status().isUnauthorized()
                 );
@@ -50,7 +50,7 @@ class CustomerControllerTest {
                                                 }
                                                 """));
 
-                mockMvc.perform(MockMvcRequestBuilders.get("/api/customer"))
+                mockMvc.perform(MockMvcRequestBuilders.get("/api/customers"))
                 .andExpectAll(
                         MockMvcResultMatchers.status().isOk()
                 );
@@ -60,14 +60,14 @@ class CustomerControllerTest {
     @Test
     @WithMockUser
     void FindById_whenAppUserIsLoggedLookingForCustomerWithId_thenReturn200() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/customer/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/customers/1"))
                 .andExpectAll(
                         MockMvcResultMatchers.status().isOk()
                 );
     }
     @Test
     void FindById_whenAppUserIsNotLoggedLookingForCustomerWithId_thenReturn401() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/customer/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/customers/1"))
                 .andExpectAll(
                         MockMvcResultMatchers.status().isUnauthorized()
                 );
@@ -94,7 +94,7 @@ class CustomerControllerTest {
                                                 "password": ""
                                                 }
                                                 """));
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/customer")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/customers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                            {
@@ -119,7 +119,7 @@ class CustomerControllerTest {
                                               "surname": "popowicz",
                                                "address": "Musterstraße",
                                                "postalCode": "20001",
-                                               "status": "OPEN",
+                                               "status": "Open",
                                                "credit": 5000,
                                                "reason": "",
                                                "description": "",
@@ -131,12 +131,12 @@ class CustomerControllerTest {
     }
     @Test
     void create_whenAppUserIsNotLogged_thenReturn401() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/costumor")).
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/costumors")).
                 andExpectAll(MockMvcResultMatchers.status().isUnauthorized());
     }
     @Test
     void Delete_whenAppUserNotLogged_thenReturn401() throws Exception {
-            mockMvc.perform(MockMvcRequestBuilders.delete("/api/customer/5"))
+            mockMvc.perform(MockMvcRequestBuilders.delete("/api/customers/5"))
                     .andExpectAll(
                             MockMvcResultMatchers.status().isUnauthorized()
                     );
@@ -161,7 +161,7 @@ class CustomerControllerTest {
                                                 "password": ""
                                                 }
                                                 """));
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/customer")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/customers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                            {
@@ -186,7 +186,7 @@ class CustomerControllerTest {
                                               "surname": "popowicz",
                                                "address": "Musterstraße",
                                                "postalCode": "20001",
-                                               "status": "OPEN",
+                                               "status": "Open",
                                                "credit": 5000,
                                                "reason": "",
                                                "description": "",
@@ -195,7 +195,7 @@ class CustomerControllerTest {
                                               }
                                               """)
         );
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/customer/1"))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/customers/1"))
                 .andExpectAll(MockMvcResultMatchers.status().isOk());
     }
 }

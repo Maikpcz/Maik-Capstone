@@ -1,4 +1,4 @@
-package de.neuefische.backend.appUser;
+package de.neuefische.backend.appuser;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
