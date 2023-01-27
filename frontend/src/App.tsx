@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import Homepage from "./pages/Homepage";
 import CustomersPage from "./pages/CustomersPage";
 import AddCustomersPage from "./pages/AddCustomersPage";
+import Auth from "./components/Auth";
 
 function App() {
   return (
@@ -13,9 +14,9 @@ function App() {
       <Routes>
         <Route path={"/signup"} element={<SignUpPage/>}/>
         <Route path={"/login"} element={<LoginPage/>}/>
-        <Route path={"/"} element={<Homepage/>}/>
-        <Route path={"/customers"} element={<CustomersPage/>}/>
-        <Route path={"/add-customers"} element={<AddCustomersPage/>}/>
+        <Route path={"/"} element={<Auth><Homepage/></Auth>}/>
+        <Route path={"/customers"} element={<Auth><CustomersPage/></Auth>}/>
+        <Route path={"/add-customers"} element={<Auth><AddCustomersPage/></Auth>}/>
       </Routes>
     </BrowserRouter>
   );
