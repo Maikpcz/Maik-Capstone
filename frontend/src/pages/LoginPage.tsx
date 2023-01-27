@@ -58,6 +58,7 @@ export default function LoginPage(){
                 <button>Login</button>
                 </div>
             </form>
+            <button onClick={e => navigate("/signup")}>Sign up</button>
         </div>
     )
 }
