@@ -130,6 +130,11 @@ class CustomerControllerTest {
         );
     }
     @Test
+    void create_whenAppUserIsNotLogged_thenReturn401() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/costumor")).
+                andExpectAll(MockMvcResultMatchers.status().isUnauthorized());
+    }
+    @Test
     void Delete_whenAppUserNotLogged_thenReturn401() throws Exception {
             mockMvc.perform(MockMvcRequestBuilders.delete("/api/customer/5"))
                     .andExpectAll(
@@ -193,5 +198,4 @@ class CustomerControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/customer/1"))
                 .andExpectAll(MockMvcResultMatchers.status().isOk());
     }
-
 }

@@ -23,7 +23,7 @@ public class CustomerService {
 
     public Customer create(Customer customer) {
         customer.setCreatedBy(appUserService.getAuthenticatedUser().getId());
-        customer.setStatus(CustomerStatus.OPEN);
+        customer.setStatus("Open");
         return customerRepository.save(customer);
     }
 
