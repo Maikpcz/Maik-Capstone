@@ -1,5 +1,4 @@
  type Customers = {
-     id: string,
      firstname: string,
      surname: string,
      address: string,
