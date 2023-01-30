@@ -15,17 +15,17 @@ export default function Homepage(){
             const response = await axios.get("/api/customers");
             setCustomer(response.data);
         })();
-    }, []);
-
+    }, [])
 
     return(
         <div>
             <h1>Homepage</h1>
             <LogoutButton/>
+            <div>
             <div><button onClick={() => navigate("/add-customers")}>Add</button>
             {customer.map(customer => {
                 return(
-                    <div className={"CustomerCard"}>
+                    <div  key={customer.id} onClick={() => navigate("/customers/" + customer.id)} className={"CustomerCard"}>
                         <div>{customer.firstname}</div>
                         <div>{customer.surname}</div>
                         <div>{customer.credit}</div>
@@ -34,6 +34,7 @@ export default function Homepage(){
                 )
             })}
             </div>
+        </div>
         </div>
     )
 }

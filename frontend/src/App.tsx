@@ -15,7 +15,7 @@ function App() {
         <Route path={"/signup"} element={<SignUpPage/>}/>
         <Route path={"/login"} element={<LoginPage/>}/>
         <Route path={"/"} element={<Auth><Homepage/></Auth>}/>
-        <Route path={"/customers"} element={<Auth><CustomersPage/></Auth>}/>
+        <Route path={"/customers/:id"} element={<Auth><CustomersPage/></Auth>}/>
         <Route path={"/add-customers"} element={<Auth><AddCustomersPage/></Auth>}/>
       </Routes>
     </BrowserRouter>
