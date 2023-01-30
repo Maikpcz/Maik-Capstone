@@ -1,6 +1,7 @@
 import React, {FormEvent, useCallback, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+import {Button} from "@mui/material";
 
 export default function SignUpPage(){
 
@@ -63,10 +64,7 @@ export default function SignUpPage(){
                     onChange={handleChange}
                     />
                 </div>
-
-                <div>
-                    <button>Sign Up</button>
-                </div>
+                <button>Sign Up</button>
             </form>
         </div>
     )

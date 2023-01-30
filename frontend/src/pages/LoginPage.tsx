@@ -1,6 +1,7 @@
 import React, {FormEvent, useCallback, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+import {Button} from "@mui/material";
 
 export default function LoginPage(){
     const [username, setUsername] = useState("")
@@ -60,7 +61,7 @@ export default function LoginPage(){
                 <button>Login</button>
                 </div>
             </form>
-            <button onClick={e => navigate("/signup")}>Sign up</button>
+            <Button variant={"contained"} onClick={() => navigate("/signup")}>Sign up</Button>
         </div>
     )
 }

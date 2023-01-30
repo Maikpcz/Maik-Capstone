@@ -1,7 +1,7 @@
 package de.neuefische.backend.customer;
 
-import de.neuefische.backend.appuser.AppUser;
-import de.neuefische.backend.appuser.AppUserService;
+import de.neuefische.backend.appUser.AppUser;
+import de.neuefische.backend.appUser.AppUserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -180,12 +180,6 @@ class CustomerServiceTest {
     @Test
     void findByID_WhenAppUserGiveCustomerIDThatNotExist_FindCustomerById(){
         //given
-        AppUser appUser = new AppUser(
-                "1",
-                "maik",
-                "123"
-        );
-
         CustomerRepository customerRepository = mock(CustomerRepository.class);
         AppUserService appUserService = mock(AppUserService.class);
         CustomerService customerService = new CustomerService(customerRepository,appUserService);
