@@ -2,6 +2,7 @@ import {useNavigate} from "react-router-dom";
 import React, {FormEvent, useCallback, useState} from "react";
 import Customers from "../models/Customers";
 import axios from "axios";
+import {Box, Button, TextField} from "@mui/material";
 
 export default function AddCustomersPage(){
 
@@ -40,80 +41,94 @@ export default function AddCustomersPage(){
     return(
         <div>
             <h1>AddCustomersPage</h1>
-            <form onSubmit={AddCustomer}>
-                <div className={"KeyData"}>
-                <input
+            <Box component={"form"}
+                 onSubmit={AddCustomer}
+                 sx={{display: "flex",
+                     flexDirection: "column"}}>
+
+                <Box sx={{border: "solid",
+                    display: "inline-grid",
+                    marginBottom: 1}}>
+
+                <TextField variant={"standard"} size={"small"}
                     placeholder={"firstname"}
                     value={credentials.firstname}
                     required={true}
                     name={"firstname"}
                     onChange={handleChange}
                     />
-                <input
+
+                <TextField variant={"standard"}
                 placeholder={"surname"}
                 value={credentials.surname}
                 required={true}
                 name={"surname"}
                 onChange={handleChange}
                 />
-                <input
+
+                <TextField variant={"standard"}
                     placeholder={"address"}
                     value={credentials.address}
                     required={true}
                     name={"address"}
                     onChange={handleChange}
                 />
-                <input
+
+                <TextField variant={"standard"}
                 placeholder={"postalCode"}
                 value={credentials.postalCode}
                 name={"postalCode"}
                 onChange={handleChange}
                 />
-                    <input
+
+                    <TextField variant={"standard"}
                     placeholder={"phonenumber"}
                     value={credentials.phonenumber}
                     required={true}
                     name={"phonenumber"}
                     onChange={handleChange}
                     />
-                </div>
-                <div className={"creditInformation"}>
-                    <input
+
+                </Box>
+
+                    <TextField variant={"standard"}
                         placeholder={"credit"}
                         value={credentials.credit}
                         required={true}
                         name={"credit"}
                         onChange={handleChange}
                     />
-                    <input
+                    <TextField variant={"standard"}
                     placeholder={"reason"}
                     value={credentials.reason}
                     required={true}
                     name={"reason"}
                     onChange={handleChange}
                     />
-                </div>
-                <div className={"descriptionTextfield"}>
-                    <input
+
+
+                    <TextField variant={"standard"} multiline={true}
+                               rows={4}
                     placeholder={"description"}
                     value={credentials.description}
                     name={"description"}
                     onChange={handleChange}
                     />
-                </div>
-                <div className={"notesTextfield"}>
-                    <input
+
+
+                    <TextField variant={"standard"} multiline={true}
+                               rows={4}
                     placeholder={"notes"}
                     value={credentials.notes}
                     name={"notes"}
                     onChange={handleChange}
                     />
-                </div>
-                <button>Add Customer</button>
-            </form>
-            <div>
-                <button onClick={() => navigate("/")}>Homepage</button>
-            </div>
+
+                <Button variant={"contained"} type={"submit"}>Add Customer</Button>
+
+                <Button variant={"contained"} onClick={() => navigate("/")}>Homepage</Button>
+
+            </Box>
         </div>
     )
 }

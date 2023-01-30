@@ -41,7 +41,16 @@ export default function SignUpPage(){
 
 
     return(
-        <Box component={"form"} onSubmit={signUp} sx={{flexDirection: 'column', alignItems: 'center', width: 1, justifyContent: "center", height: "100%", display: "flex", mt: 16}}>
+        <Box component={"form"}
+             onSubmit={signUp}
+             sx={{flexDirection: 'column',
+                 alignItems: 'center',
+                 width: 1,
+                 justifyContent: "center",
+                 height: "100%",
+                 display: "flex",
+                 mt: 16}}>
+
             <h1>SignUp</h1>
 
             {error && <div>{error}</div>}
