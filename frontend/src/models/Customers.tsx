@@ -1,4 +1,5 @@
  type Customers = {
+     id?: string,
      firstname: string,
      surname: string,
      address: string,
@@ -9,6 +10,6 @@
      reason: string,
      description: string
      notes: string,
-     createdBy: string
+     createdBy?: string
 }
 export default Customers;

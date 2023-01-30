@@ -17,8 +17,7 @@ export default function AddCustomersPage(){
         credit: 0,
         reason: "",
         description: "",
-        notes: "",
-        createdBy: ""
+        notes: ""
     });
 
     const handleChange = useCallback(
@@ -113,7 +112,7 @@ export default function AddCustomersPage(){
                 <button>Add Customer</button>
             </form>
             <div>
-                <button onClick={event => navigate("/")}>Homepage</button>
+                <button onClick={() => navigate("/")}>Homepage</button>
             </div>
         </div>
     )
