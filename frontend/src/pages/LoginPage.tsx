@@ -59,8 +59,10 @@ export default function LoginPage(){
                 </div>
 
                 <Button variant={"contained"} type={"submit"}>Login</Button>
-        </Box>
+
             <Button variant={"contained"} onClick={() => navigate("/signup")}>Sign up</Button>
+        </Box>
+
         </>
     )
 }

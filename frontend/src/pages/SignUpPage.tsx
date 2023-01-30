@@ -41,31 +41,24 @@ export default function SignUpPage(){
 
 
     return(
-        <Box sx={{flexDirection: 'column', alignItems: 'center', width: 1, justifyContent: "center", height: "100%", display: "flex", mt: 16}} className={"SignUpPage"}>
-            <h1 className={"title"}>SignUp</h1>
+        <Box component={"form"} onSubmit={signUp} sx={{flexDirection: 'column', alignItems: 'center', width: 1, justifyContent: "center", height: "100%", display: "flex", mt: 16}}>
+            <h1>SignUp</h1>
 
             {error && <div>{error}</div>}
-            <Box sx={{display: "flex"}} maxWidth={"sm"}>
-            <form onSubmit={signUp}>
+
             <TextField variant={"outlined"}
                 placeholder={"username"}
                 value={credentials.username}
                 name={"username"}
                 onChange={handleChange}
             />
-
-
-                <div>
-                    <TextField variant={"outlined"}
-                    placeholder={"password"}
-                    type={"password"}
-                    name={"password"}
-                    onChange={handleChange}
-                    />
-                </div>
-                <Button variant={"contained"} size={"medium"}>Sign Up</Button>
-            </form>
-            </Box>
+            <TextField variant={"outlined"}
+                 placeholder={"password"}
+                 type={"password"}
+                 name={"password"}
+                 onChange={handleChange}
+                 />
+            <Button variant={"contained"} size={"medium"} type={"submit"}>Sign Up</Button>
         </Box>
     )
 }
