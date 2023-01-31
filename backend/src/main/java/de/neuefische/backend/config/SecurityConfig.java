@@ -17,10 +17,10 @@ import java.util.Optional;
 
     @Configuration
     @RequiredArgsConstructor
-    @Generated("*")
     public class SecurityConfig {
         private final AppUserService appUserService;
 
+        @Generated("*")
         @Bean
         public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
             return http
