@@ -2,6 +2,7 @@ package de.neuefische.backend.config;
 
 import de.neuefische.backend.appUser.AppUser;
 import de.neuefische.backend.appUser.AppUserService;
+import lombok.Generated;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,7 @@ import java.util.Optional;
     public class SecurityConfig {
         private final AppUserService appUserService;
 
+        @Generated
         @Bean
         public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
             return http
@@ -36,7 +38,8 @@ import java.util.Optional;
         }
 
 
-        @Bean
+    @Generated
+    @Bean
     public UserDetailsService userDetailsService () {
         return username -> {
             Optional<AppUser> user = appUserService.findByUsername(username);

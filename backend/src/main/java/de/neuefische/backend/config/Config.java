@@ -1,5 +1,6 @@
 package de.neuefische.backend.config;
 
+import lombok.Generated;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -11,6 +12,7 @@ import java.io.IOException;
 
 @Configuration
 public class Config implements WebMvcConfigurer {
+    @Generated
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**")

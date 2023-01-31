@@ -1,5 +1,6 @@
 package de.neuefische.backend.appUser;
 
+import lombok.Generated;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -44,6 +45,7 @@ public class AppUserService {
             return appUser;
         }
 
+        @Generated
         public AppUser getAuthenticatedUser () {
             return findByUsernameWithoutPassword(
                     SecurityContextHolder.getContext().getAuthentication().getName()
