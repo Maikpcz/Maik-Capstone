@@ -1,7 +1,7 @@
 import React, {FormEvent, useCallback, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import {Button} from "@mui/material";
+import {Box, Button, TextField} from "@mui/material";
 
 export default function SignUpPage(){
 
@@ -41,31 +41,33 @@ export default function SignUpPage(){
 
 
     return(
-        <div className={"SignUpPage"}>
+        <Box component={"form"}
+             onSubmit={signUp}
+             sx={{flexDirection: 'column',
+                 alignItems: 'center',
+                 width: 1,
+                 justifyContent: "center",
+                 height: "100%",
+                 display: "flex",
+                 mt: 16}}>
+
             <h1>SignUp</h1>
 
             {error && <div>{error}</div>}
 
-            <form onSubmit={signUp}>
-                <div>
-                    <input
-                    placeholder={"username"}
-                    value={credentials.username}
-                    name={"username"}
-                    onChange={handleChange}
-                    />
-                </div>
-
-                <div>
-                    <input
-                    placeholder={"password"}
-                    type={"password"}
-                    name={"password"}
-                    onChange={handleChange}
-                    />
-                </div>
-                <button>Sign Up</button>
-            </form>
-        </div>
+            <TextField variant={"outlined"}
+                placeholder={"username"}
+                value={credentials.username}
+                name={"username"}
+                onChange={handleChange}
+            />
+            <TextField variant={"outlined"}
+                 placeholder={"password"}
+                 type={"password"}
+                 name={"password"}
+                 onChange={handleChange}
+                 />
+            <Button variant={"contained"} size={"medium"} type={"submit"}>Sign Up</Button>
+        </Box>
     )
 }

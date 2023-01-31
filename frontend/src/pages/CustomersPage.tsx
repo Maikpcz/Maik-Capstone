@@ -1,13 +1,14 @@
 import {useNavigate, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {FormEvent, useCallback, useEffect, useState} from "react";
 import axios from "axios";
 import Customers from "../models/Customers";
+import {Box, Button, TextField} from "@mui/material";
 
 export default function CustomersPage(){
 
     const navigate = useNavigate()
 
-    const [cust, setCust] = useState<Customers>({
+    const [custemor, setCustemor] = useState<Customers>({
         id: "",
         firstname: "",
         surname: "",
@@ -26,23 +27,128 @@ export default function CustomersPage(){
     useEffect(() => {
         (async () => {
             const response = await axios.get("/api/customers/" + id);
-            setCust(response.data)
+            setCustemor(response.data)
         })();
     }, []);
 
+    const handleChange = useCallback(
+        (event: React.ChangeEvent<HTMLInputElement>) => {
+            const {name, value} = event.target;
+            setCustemor({...custemor, [name]: value});
+        },
+        [custemor, setCustemor]
+    );
+    const EditCustomer = useCallback(
+        async (e: FormEvent<HTMLFormElement>) => {
+            e.preventDefault();
+
+            await axios.post("/api/customers",custemor);
+            navigate("/");
+        },
+        [custemor, navigate]
+    );
+
     async function deleteCustomer(){
         const response = await
-            axios.delete("/api/customers/" + cust.id)
+            axios.delete("/api/customers/" + custemor.id)
     }
 
-    console.log(cust)
+    console.log(custemor)
     return(
         <div>
             <h1>CustomerPage</h1>
-            <button onClick={() => navigate("/")}>Homepage</button>
-            <button onClick={() =>{
+            <Box component={"form"}
+                 onSubmit={EditCustomer}
+                 sx={{display: "flex",
+                     flexDirection: "column"}}>
+
+                <Box sx={{border: "solid",
+                    display: "inline-grid",
+                    marginBottom: 1}}>
+
+                    <TextField variant={"standard"} size={"small"}
+                               label={"firstname"}
+                               value={custemor.firstname}
+                               required={true}
+                               name={"firstname"}
+                               onChange={handleChange}
+                    />
+
+                    <TextField variant={"standard"}
+                               label={"surname"}
+                               value={custemor.surname}
+                               required={true}
+                               name={"surname"}
+                               onChange={handleChange}
+                    />
+
+                    <TextField variant={"standard"}
+                               label={"address"}
+                               value={custemor.address}
+                               required={true}
+                               name={"address"}
+                               onChange={handleChange}
+                    />
+
+                    <TextField variant={"standard"}
+                               label={custemor.postalCode}
+                               value={custemor.postalCode}
+                               name={"postalCode"}
+                               onChange={handleChange}
+                    />
+
+                    <TextField variant={"standard"}
+                               label={"phonenumber"}
+                               value={custemor.phonenumber}
+                               required={true}
+                               name={"phonenumber"}
+                               onChange={handleChange}
+                    />
+
+                </Box>
+
+                <TextField variant={"standard"}
+                           label={"credit"}
+                           value={custemor.credit}
+                           required={true}
+                           name={"credit"}
+                           onChange={handleChange}
+                />
+                <TextField variant={"standard"}
+                           label={"reason"}
+                           value={custemor.reason}
+                           required={true}
+                           name={"reason"}
+                           onChange={handleChange}
+                />
+
+
+                <TextField variant={"standard"} multiline={true}
+                           rows={4}
+                           label={"description"}
+                           value={custemor.description}
+                           name={"description"}
+                           onChange={handleChange}
+                />
+
+
+                <TextField variant={"standard"} multiline={true}
+                           rows={4}
+                           label={"notes"}
+                           value={custemor.notes}
+                           name={"notes"}
+                           onChange={handleChange}
+                />
+
+                <Button variant={"contained"} type={"submit"}>Add Customer</Button>
+
+                <Button variant={"contained"} onClick={() => navigate("/")}>Homepage</Button>
+
+                <Button variant={"contained"} onClick={() =>{
                 deleteCustomer().then(() => navigate("/"));
-            }}></button>
+
+                }}>Delete</Button>
+        </Box>
         </div>
     )
 }

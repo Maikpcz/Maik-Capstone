@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Customers from "../models/Customers";
+import {Box, Button} from "@mui/material";
 
 export default function Homepage(){
 
@@ -18,23 +19,43 @@ export default function Homepage(){
     }, [])
 
     return(
-        <div>
+        <>
+        <Box sx={{
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: 1,
+            justifyContent: "center",
+            height: "100%",
+            mt: 16,
+            display: 'inline-grid',
+            border: 'solid',
+            justifyItems: "center"
+        }}>
             <h1>Homepage</h1>
-            <LogoutButton/>
-            <div>
-            <div><button onClick={() => navigate("/add-customers")}>Add</button>
+            <Button variant={"contained"} onClick={() => navigate("/add-customers")}>Add</Button>
             {customer.map(customer => {
                 return(
-                    <div  key={customer.id} onClick={() => navigate("/customers/" + customer.id)} className={"CustomerCard"}>
+                    <Box key={customer.id} sx={{display: 'flex',
+                        columnGap: 5,
+                        rowGap: 1,
+                        mt: 5,
+                        marginBottom: 1,
+                        marginLeft: 1
+                        , border: "solid"
+                        ,marginRight: 1
+                    }}
+                         onClick={() => navigate("/customers/" + customer.id)}>
                         <div>{customer.firstname}</div>
                         <div>{customer.surname}</div>
+                        <div>{customer.status}</div>
                         <div>{customer.credit}</div>
                         <div>{customer.reason}</div>
-                    </div>
+                    </Box>
                 )
             })}
-            </div>
-        </div>
-        </div>
+
+        </Box>
+    <LogoutButton/>
+    </>
     )
 }

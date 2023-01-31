@@ -2,6 +2,7 @@ import {useNavigate} from "react-router-dom";
 import React, {FormEvent, useCallback, useState} from "react";
 import Customers from "../models/Customers";
 import axios from "axios";
+import {Box, Button, TextField} from "@mui/material";
 
 export default function AddCustomersPage(){
 
@@ -40,80 +41,94 @@ export default function AddCustomersPage(){
     return(
         <div>
             <h1>AddCustomersPage</h1>
-            <form onSubmit={AddCustomer}>
-                <div className={"KeyData"}>
-                <input
-                    placeholder={"firstname"}
+            <Box component={"form"}
+                 onSubmit={AddCustomer}
+                 sx={{display: "flex",
+                     flexDirection: "column"}}>
+
+                <Box sx={{border: "solid",
+                    display: "inline-grid",
+                    marginBottom: 1}}>
+
+                <TextField variant={"standard"} size={"small"}
+                    label={"firstname"}
                     value={credentials.firstname}
                     required={true}
                     name={"firstname"}
                     onChange={handleChange}
                     />
-                <input
-                placeholder={"surname"}
+
+                <TextField variant={"standard"}
+                label={"surname"}
                 value={credentials.surname}
                 required={true}
                 name={"surname"}
                 onChange={handleChange}
                 />
-                <input
-                    placeholder={"address"}
+
+                <TextField variant={"standard"}
+                    label={"address"}
                     value={credentials.address}
                     required={true}
                     name={"address"}
                     onChange={handleChange}
                 />
-                <input
-                placeholder={"postalCode"}
+
+                <TextField variant={"standard"}
+                label={"postalCode"}
                 value={credentials.postalCode}
                 name={"postalCode"}
                 onChange={handleChange}
                 />
-                    <input
-                    placeholder={"phonenumber"}
+
+                    <TextField variant={"standard"}
+                    label={"phonenumber"}
                     value={credentials.phonenumber}
                     required={true}
                     name={"phonenumber"}
                     onChange={handleChange}
                     />
-                </div>
-                <div className={"creditInformation"}>
-                    <input
-                        placeholder={"credit"}
+
+                </Box>
+
+                    <TextField variant={"standard"}
+                        label={"credit"}
                         value={credentials.credit}
                         required={true}
                         name={"credit"}
                         onChange={handleChange}
                     />
-                    <input
-                    placeholder={"reason"}
+                    <TextField variant={"standard"}
+                    label={"reason"}
                     value={credentials.reason}
                     required={true}
                     name={"reason"}
                     onChange={handleChange}
                     />
-                </div>
-                <div className={"descriptionTextfield"}>
-                    <input
-                    placeholder={"description"}
+
+
+                    <TextField variant={"standard"} multiline={true}
+                               rows={4}
+                    label={"description"}
                     value={credentials.description}
                     name={"description"}
                     onChange={handleChange}
                     />
-                </div>
-                <div className={"notesTextfield"}>
-                    <input
-                    placeholder={"notes"}
+
+
+                    <TextField variant={"standard"} multiline={true}
+                               rows={4}
+                    label={"notes"}
                     value={credentials.notes}
                     name={"notes"}
                     onChange={handleChange}
                     />
-                </div>
-                <button>Add Customer</button>
-            </form>
-            <div>
-                <button onClick={() => navigate("/")}>Homepage</button>
-            </div>
+
+                <Button variant={"contained"} type={"submit"}>Add Customer</Button>
+
+                <Button variant={"contained"} onClick={() => navigate("/")}>Homepage</Button>
+
+            </Box>
         </div>
     )
 }
