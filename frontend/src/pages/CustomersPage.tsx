@@ -75,6 +75,7 @@ export default function CustomersPage(){
 
                     <TextField variant={"standard"} size={"small"}
                                label={"firstname"}
+                               margin={"normal"}
                                value={custemor.firstname}
                                required={true}
                                name={"firstname"}
@@ -82,6 +83,7 @@ export default function CustomersPage(){
                     />
 
                     <TextField variant={"standard"}
+                               margin={"normal"}
                                label={"surname"}
                                value={custemor.surname}
                                required={true}
@@ -91,6 +93,7 @@ export default function CustomersPage(){
 
                     <TextField variant={"standard"}
                                label={"address"}
+                               margin={"normal"}
                                value={custemor.address}
                                required={true}
                                name={"address"}
@@ -98,6 +101,7 @@ export default function CustomersPage(){
                     />
 
                     <TextField variant={"standard"}
+                               margin={"normal"}
                                label={custemor.postalCode}
                                value={custemor.postalCode}
                                name={"postalCode"}
@@ -106,6 +110,7 @@ export default function CustomersPage(){
 
                     <TextField variant={"standard"}
                                label={"phonenumber"}
+                               margin={"normal"}
                                value={custemor.phonenumber}
                                required={true}
                                name={"phonenumber"}
@@ -116,6 +121,7 @@ export default function CustomersPage(){
 
                 <TextField variant={"standard"}
                            label={"credit"}
+                           margin={"normal"}
                            value={custemor.credit}
                            required={true}
                            name={"credit"}
@@ -123,6 +129,7 @@ export default function CustomersPage(){
                 />
                 <TextField variant={"standard"}
                            label={"reason"}
+                           margin={"normal"}
                            value={custemor.reason}
                            required={true}
                            name={"reason"}
@@ -132,6 +139,7 @@ export default function CustomersPage(){
 
                 <TextField variant={"standard"} multiline={true}
                            rows={4}
+                           margin={"normal"}
                            label={"description"}
                            value={custemor.description}
                            name={"description"}
@@ -141,6 +149,7 @@ export default function CustomersPage(){
 
                 <TextField variant={"standard"} multiline={true}
                            rows={4}
+                           margin={"normal"}
                            label={"notes"}
                            value={custemor.notes}
                            name={"notes"}
@@ -153,7 +162,6 @@ export default function CustomersPage(){
 
                 <Button variant={"contained"} onClick={() =>{
                 deleteCustomer().then(() => navigate("/"));
-
                 }}>Delete</Button>
 
                 <Button variant={"contained"} onClick={() => {

@@ -57,7 +57,7 @@ class CustomerServiceTest {
                 "Musterweg",
                 "20001",
                 1234567890,
-                "Open",
+                "OPEN",
                 5000,
                 "",
                 "",
