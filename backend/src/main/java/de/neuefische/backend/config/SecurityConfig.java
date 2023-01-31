@@ -39,6 +39,7 @@ import java.util.Optional;
 
 
     @Bean
+    @Generated("*")
     public UserDetailsService userDetailsService () {
         return username -> {
             Optional<AppUser> user = appUserService.findByUsername(username);
