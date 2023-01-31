@@ -19,6 +19,7 @@ export default function Homepage(){
     }, [])
 
     return(
+        <>
         <Box sx={{
             flexDirection: 'column',
             alignItems: 'center',
@@ -52,7 +53,9 @@ export default function Homepage(){
                     </Box>
                 )
             })}
-            <LogoutButton/>
+
         </Box>
+    <LogoutButton/>
+    </>
     )
 }

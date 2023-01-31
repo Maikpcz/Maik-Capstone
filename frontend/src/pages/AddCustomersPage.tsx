@@ -51,7 +51,7 @@ export default function AddCustomersPage(){
                     marginBottom: 1}}>
 
                 <TextField variant={"standard"} size={"small"}
-                    placeholder={"firstname"}
+                    label={"firstname"}
                     value={credentials.firstname}
                     required={true}
                     name={"firstname"}
@@ -59,7 +59,7 @@ export default function AddCustomersPage(){
                     />
 
                 <TextField variant={"standard"}
-                placeholder={"surname"}
+                label={"surname"}
                 value={credentials.surname}
                 required={true}
                 name={"surname"}
@@ -67,7 +67,7 @@ export default function AddCustomersPage(){
                 />
 
                 <TextField variant={"standard"}
-                    placeholder={"address"}
+                    label={"address"}
                     value={credentials.address}
                     required={true}
                     name={"address"}
@@ -75,14 +75,14 @@ export default function AddCustomersPage(){
                 />
 
                 <TextField variant={"standard"}
-                placeholder={"postalCode"}
+                label={"postalCode"}
                 value={credentials.postalCode}
                 name={"postalCode"}
                 onChange={handleChange}
                 />
 
                     <TextField variant={"standard"}
-                    placeholder={"phonenumber"}
+                    label={"phonenumber"}
                     value={credentials.phonenumber}
                     required={true}
                     name={"phonenumber"}
@@ -92,14 +92,14 @@ export default function AddCustomersPage(){
                 </Box>
 
                     <TextField variant={"standard"}
-                        placeholder={"credit"}
+                        label={"credit"}
                         value={credentials.credit}
                         required={true}
                         name={"credit"}
                         onChange={handleChange}
                     />
                     <TextField variant={"standard"}
-                    placeholder={"reason"}
+                    label={"reason"}
                     value={credentials.reason}
                     required={true}
                     name={"reason"}
@@ -109,7 +109,7 @@ export default function AddCustomersPage(){
 
                     <TextField variant={"standard"} multiline={true}
                                rows={4}
-                    placeholder={"description"}
+                    label={"description"}
                     value={credentials.description}
                     name={"description"}
                     onChange={handleChange}
@@ -118,7 +118,7 @@ export default function AddCustomersPage(){
 
                     <TextField variant={"standard"} multiline={true}
                                rows={4}
-                    placeholder={"notes"}
+                    label={"notes"}
                     value={credentials.notes}
                     name={"notes"}
                     onChange={handleChange}
