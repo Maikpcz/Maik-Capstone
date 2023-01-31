@@ -2,7 +2,6 @@ package de.neuefische.backend.config;
 
 import de.neuefische.backend.appUser.AppUser;
 import de.neuefische.backend.appUser.AppUserService;
-import lombok.Generated;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,14 +12,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.SecurityFilterChain;
 
+import javax.annotation.processing.Generated;
 import java.util.Optional;
 
     @Configuration
     @RequiredArgsConstructor
+    @Generated("*")
     public class SecurityConfig {
         private final AppUserService appUserService;
 
-        @Generated
         @Bean
         public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
             return http
@@ -38,7 +38,6 @@ import java.util.Optional;
         }
 
 
-    @Generated
     @Bean
     public UserDetailsService userDetailsService () {
         return username -> {
