@@ -34,7 +34,7 @@ export default function Homepage(){
             <Button variant={"contained"} onClick={() => navigate("/add-customers")}>Add</Button>
             {customer.map(customer => {
                 return(
-                    <Box sx={{display: 'flex',
+                    <Box key={customer.id} sx={{display: 'flex',
                         columnGap: 5,
                         rowGap: 1,
                         mt: 5,
