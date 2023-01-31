@@ -7,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.annotation.processing.Generated;
 import java.util.Optional;
 
 @Service
@@ -45,7 +44,6 @@ public class AppUserService {
             return appUser;
         }
 
-       @Generated("*")
         public AppUser getAuthenticatedUser () {
             return findByUsernameWithoutPassword(
                     SecurityContextHolder.getContext().getAuthentication().getName()
