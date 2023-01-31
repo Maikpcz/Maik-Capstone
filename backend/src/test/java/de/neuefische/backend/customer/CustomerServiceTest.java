@@ -206,4 +206,88 @@ class CustomerServiceTest {
         //then
         verify(customerRepository).deleteById("1");
     }
+    @Test
+    void setStatus_setStatusFromCustomerToAssumend_AndReturnCustomer(){
+        Customer customer = new Customer(
+                "5",
+                "Dennis",
+                "La",
+                "MusterStraße",
+                "2009",
+                10000,
+                CustomerStatus.OPEN,
+                500,
+                "",
+                "",
+                "",
+                "1");
+
+        Customer expect = new Customer(
+                "5",
+                "Dennis",
+                "La",
+                "MusterStraße",
+                "2009",
+                10000,
+                CustomerStatus.ASSUMED,
+                500,
+                "",
+                "",
+                "",
+                "1");
+
+        CustomerRepository customerRepository = mock(CustomerRepository.class);
+        AppUserService appUserService = mock(AppUserService.class);
+        CustomerService customerService = new CustomerService(customerRepository,appUserService);
+
+        when(customerRepository.save(customer)).thenReturn(expect);
+
+        Customer actual = customerService.setStatusAssumed(customer);
+
+        Assertions.assertEquals(actual,expect);
+
+        verify(customerRepository).save(customer);
+    }
+    @Test
+    void setStatus_setStatusFromCustomerToDeclined_AndReturnCustomer() {
+        Customer customer = new Customer(
+                "5",
+                "Dennis",
+                "La",
+                "MusterStraße",
+                "2009",
+                10000,
+                CustomerStatus.OPEN,
+                500,
+                "",
+                "",
+                "",
+                "1");
+
+        Customer expect = new Customer(
+                "5",
+                "Dennis",
+                "La",
+                "MusterStraße",
+                "2009",
+                10000,
+                CustomerStatus.DECLINED,
+                500,
+                "",
+                "",
+                "",
+                "1");
+
+        CustomerRepository customerRepository = mock(CustomerRepository.class);
+        AppUserService appUserService = mock(AppUserService.class);
+        CustomerService customerService = new CustomerService(customerRepository, appUserService);
+
+        when(customerRepository.save(customer)).thenReturn(expect);
+
+        Customer actual = customerService.setStatusDeclined(customer);
+
+        Assertions.assertEquals(actual, expect);
+
+        verify(customerRepository).save(customer);
+    }
 }

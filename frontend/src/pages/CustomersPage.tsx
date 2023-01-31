@@ -48,9 +48,16 @@ export default function CustomersPage(){
         [custemor, navigate]
     );
 
+    async function ChangeCustomerStatusAssumed() {
+        await axios.post("/api/customers/status/assumed", custemor);
+    }
+
+    async function ChangeCustomerStatusDeclined() {
+        await axios.post("/api/customers/status/declined", custemor);
+    }
+
     async function deleteCustomer(){
-        const response = await
-            axios.delete("/api/customers/" + custemor.id)
+        await axios.delete("/api/customers/" + custemor.id)
     }
 
     console.log(custemor)
@@ -148,6 +155,14 @@ export default function CustomersPage(){
                 deleteCustomer().then(() => navigate("/"));
 
                 }}>Delete</Button>
+
+                <Button variant={"contained"} onClick={() => {
+                    ChangeCustomerStatusAssumed().then(() => navigate("/"))
+                }}>Assumed</Button>
+
+                <Button variant={"contained"} onClick={() => {
+                    ChangeCustomerStatusDeclined().then(() => navigate("/"))
+                }}>Declined</Button>
         </Box>
         </div>
     )

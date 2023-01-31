@@ -119,7 +119,7 @@ class CustomerControllerTest {
                                               "surname": "popowicz",
                                                "address": "Musterstraße",
                                                "postalCode": "20001",
-                                               "status": "Open",
+                                               "status": "OPEN",
                                                "credit": 5000,
                                                "reason": "",
                                                "description": "",
@@ -186,7 +186,7 @@ class CustomerControllerTest {
                                               "surname": "popowicz",
                                                "address": "Musterstraße",
                                                "postalCode": "20001",
-                                               "status": "Open",
+                                               "status": "OPEN",
                                                "credit": 5000,
                                                "reason": "",
                                                "description": "",
@@ -197,5 +197,181 @@ class CustomerControllerTest {
         );
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/customers/1"))
                 .andExpectAll(MockMvcResultMatchers.status().isOk());
+    }
+    @Test
+    @WithMockUser(username = "maik",password = "123")
+    void setStatusAssumend_whenAppUserIsLoggedAndIs_thenReturn200() throws Exception {
+        //Man muss sich erstmal sich ein App User erstellen damit sich der MockUser einloggen!!!!
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/app-users")
+                        .contentType(MediaType.APPLICATION_JSON).content(
+                                """
+                                {
+                                "id": "1",
+                                "username": "maik",
+                                "password": "123"
+                                }
+                                """)).andExpectAll(MockMvcResultMatchers.status().isOk()).
+                andExpect(MockMvcResultMatchers.content().json("""
+                                                {
+                                                "id": "1",
+                                                "username": "maik",
+                                                "password": ""
+                                                }
+                                                """));
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/customers")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                           {
+                           "id": "1",
+                           "firstname": "maik",
+                           "surname": "popowicz",
+                           "address": "Musterstraße",
+                           "postalCode": "20001",
+                           "status": "",
+                           "credit": 5000,
+                           "reason": "",
+                           "description": "",
+                           "notes": "",
+                           "createdBy": "1"
+                            }
+                            """)).andExpectAll(
+                MockMvcResultMatchers.status().isOk(),
+                MockMvcResultMatchers.content().json("""
+                                              {
+                                              "id": "1",
+                                              "firstname": "maik",
+                                              "surname": "popowicz",
+                                               "address": "Musterstraße",
+                                               "postalCode": "20001",
+                                               "status": "OPEN",
+                                               "credit": 5000,
+                                               "reason": "",
+                                               "description": "",
+                                               "notes": "",
+                                               "createdBy": "1"
+                                              }
+                                              """)
+        );
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/customers/status/assumed").contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                           {
+                           "id": "1",
+                           "firstname": "maik",
+                           "surname": "popowicz",
+                           "address": "Musterstraße",
+                           "postalCode": "20001",
+                           "status": "OPEN",
+                           "credit": 5000,
+                           "reason": "",
+                           "description": "",
+                           "notes": "",
+                           "createdBy": "1"
+                            }
+                            """)).andExpectAll(
+                MockMvcResultMatchers.status().isOk(),
+                MockMvcResultMatchers.content().json("""
+                                              {
+                                              "id": "1",
+                                              "firstname": "maik",
+                                              "surname": "popowicz",
+                                               "address": "Musterstraße",
+                                               "postalCode": "20001",
+                                               "status": "ASSUMED",
+                                               "credit": 5000,
+                                               "reason": "",
+                                               "description": "",
+                                               "notes": "",
+                                               "createdBy": "1"
+                                              }
+                                              """)
+        );
+        }
+    @Test
+    @WithMockUser(username = "maik",password = "123")
+    void setStatusDeclined_whenAppUserIsLoggedAndIs_thenReturn200() throws Exception {
+        //Man muss sich erstmal sich ein App User erstellen damit sich der MockUser einloggen!!!!
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/app-users")
+                        .contentType(MediaType.APPLICATION_JSON).content(
+                                """
+                                {
+                                "id": "1",
+                                "username": "maik",
+                                "password": "123"
+                                }
+                                """)).andExpectAll(MockMvcResultMatchers.status().isOk()).
+                andExpect(MockMvcResultMatchers.content().json("""
+                                                {
+                                                "id": "1",
+                                                "username": "maik",
+                                                "password": ""
+                                                }
+                                                """));
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/customers")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                           {
+                           "id": "1",
+                           "firstname": "maik",
+                           "surname": "popowicz",
+                           "address": "Musterstraße",
+                           "postalCode": "20001",
+                           "status": "",
+                           "credit": 5000,
+                           "reason": "",
+                           "description": "",
+                           "notes": "",
+                           "createdBy": "1"
+                            }
+                            """)).andExpectAll(
+                MockMvcResultMatchers.status().isOk(),
+                MockMvcResultMatchers.content().json("""
+                                              {
+                                              "id": "1",
+                                              "firstname": "maik",
+                                              "surname": "popowicz",
+                                               "address": "Musterstraße",
+                                               "postalCode": "20001",
+                                               "status": "OPEN",
+                                               "credit": 5000,
+                                               "reason": "",
+                                               "description": "",
+                                               "notes": "",
+                                               "createdBy": "1"
+                                              }
+                                              """)
+        );
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/customers/status/declined").contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                           {
+                           "id": "1",
+                           "firstname": "maik",
+                           "surname": "popowicz",
+                           "address": "Musterstraße",
+                           "postalCode": "20001",
+                           "status": "OPEN",
+                           "credit": 5000,
+                           "reason": "",
+                           "description": "",
+                           "notes": "",
+                           "createdBy": "1"
+                            }
+                            """)).andExpectAll(
+                MockMvcResultMatchers.status().isOk(),
+                MockMvcResultMatchers.content().json("""
+                                              {
+                                              "id": "1",
+                                              "firstname": "maik",
+                                              "surname": "popowicz",
+                                               "address": "Musterstraße",
+                                               "postalCode": "20001",
+                                               "status": "DECLINED",
+                                               "credit": 5000,
+                                               "reason": "",
+                                               "description": "",
+                                               "notes": "",
+                                               "createdBy": "1"
+                                              }
+                                              """)
+        );
     }
 }
