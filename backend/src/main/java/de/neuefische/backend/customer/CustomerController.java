@@ -33,4 +33,13 @@ public class CustomerController {
     public void deleteById(@PathVariable String id){
         customerService.deleteById(id);
     }
+    @PostMapping("/status/assumed")
+    public Customer setStatusAssumed(@RequestBody Customer customer){
+        return customerService.setStatusAssumed(customer);
+    }
+
+    @PostMapping ("/status/declined")
+    public Customer setStatusDeclined(@RequestBody Customer customer){
+        return customerService.setStatusDeclined(customer);
+    }
 }
