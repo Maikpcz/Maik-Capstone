@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import Customers from "../models/Customers";
 import {Box, Button, TextField} from "@mui/material";
-import customers from "../models/Customers";
 
 export default function Homepage(){
 
@@ -42,7 +41,8 @@ export default function Homepage(){
             <div><TextField onChange={(e) => setNameToFilter(e.target.value)}/>
                 {filterList.map(customer => {
                 return(
-                    <Box key={customer.id} sx={{display: 'flex',
+                    <Box key={customer.id} sx={{
+                        display: 'flex',
                         columnGap: 5,
                         rowGap: 1,
                         mt: 5,

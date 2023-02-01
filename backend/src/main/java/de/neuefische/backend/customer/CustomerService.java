@@ -15,6 +15,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final AppUserService appUserService;
 
+
     public List<Customer> getAll() {
         return customerRepository.findAllByCreatedBy(
                 appUserService.getAuthenticatedUser().getId()
