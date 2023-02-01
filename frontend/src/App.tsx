@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage";
 import CustomersPage from "./pages/CustomersPage";
 import AddCustomersPage from "./pages/AddCustomersPage";
 import Auth from "./components/Auth";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path={"/"} element={<Auth><Homepage/></Auth>}/>
         <Route path={"/customers/:id"} element={<Auth><CustomersPage/></Auth>}/>
         <Route path={"/add-customers"} element={<Auth><AddCustomersPage/></Auth>}/>
+          <Route path={"*"} element={<Auth><ErrorPage/></Auth>}/>
       </Routes>
     </BrowserRouter>
   );

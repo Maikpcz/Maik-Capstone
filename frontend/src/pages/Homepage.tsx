@@ -3,7 +3,8 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Customers from "../models/Customers";
-import {Box, Button} from "@mui/material";
+import {Box, Button, TextField} from "@mui/material";
+import customers from "../models/Customers";
 
 export default function Homepage(){
 
@@ -11,12 +12,17 @@ export default function Homepage(){
 
     const [customer, setCustomer] = useState<Customers[]>([])
 
+    const [nameToFilter, setNameToFilter]= useState<string>("")
+
     useEffect(() => {
         (async () => {
             const response = await axios.get("/api/customers");
             setCustomer(response.data);
         })();
     }, [])
+
+    const filterList = customer.filter((customer) =>
+    customer.surname.includes(nameToFilter))
 
     return(
         <>
@@ -33,7 +39,8 @@ export default function Homepage(){
         }}>
             <h1>Homepage</h1>
             <Button variant={"contained"} onClick={() => navigate("/add-customers")}>Add</Button>
-            {customer.map(customer => {
+            <div><TextField onChange={(e) => setNameToFilter(e.target.value)}/>
+                {filterList.map(customer => {
                 return(
                     <Box key={customer.id} sx={{display: 'flex',
                         columnGap: 5,
@@ -53,7 +60,7 @@ export default function Homepage(){
                     </Box>
                 )
             })}
-
+            </div>
         </Box>
     <LogoutButton/>
     </>

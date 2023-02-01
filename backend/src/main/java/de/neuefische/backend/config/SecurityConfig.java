@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.SecurityFilterChain;
 
+import javax.annotation.processing.Generated;
 import java.util.Optional;
 
     @Configuration
@@ -19,6 +20,7 @@ import java.util.Optional;
     public class SecurityConfig {
         private final AppUserService appUserService;
 
+        @Generated("*")
         @Bean
         public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
             return http
@@ -36,7 +38,8 @@ import java.util.Optional;
         }
 
 
-        @Bean
+    @Bean
+    @Generated("*")
     public UserDetailsService userDetailsService () {
         return username -> {
             Optional<AppUser> user = appUserService.findByUsername(username);
