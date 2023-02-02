@@ -2,9 +2,7 @@ package de.neuefische.backend.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 
-@Generated
 @Data
 @AllArgsConstructor
 public class Customer {

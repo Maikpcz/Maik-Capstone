@@ -11,6 +11,7 @@ export default function Auth(
     }
 ){
    const [isAuthenticated, setAuthenticated] = React.useState(false);
+
    const navigate = useNavigate();
 
    useEffect(() => {

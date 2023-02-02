@@ -1,7 +1,7 @@
 package de.neuefische.backend.customer;
 
-import de.neuefische.backend.appUser.AppUser;
-import de.neuefische.backend.appUser.AppUserService;
+import de.neuefische.backend.appuser.AppUser;
+import de.neuefische.backend.appuser.AppUserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

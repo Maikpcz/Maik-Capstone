@@ -1,10 +1,11 @@
 package de.neuefische.backend.customer;
 
-import lombok.Generated;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-@Generated
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CustomerStatus {
-    public final static String OPEN = "OPEN";
-    public final static String DECLINED = "DECLINED";
-    public final static String ASSUMED = "ASSUMED";
+    public static final String OPEN = "OPEN";
+    public static final String DECLINED = "DECLINED";
+    public static final String ASSUMED = "ASSUMED";
 }

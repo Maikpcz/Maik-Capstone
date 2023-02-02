@@ -1,4 +1,4 @@
-package de.neuefische.backend.appUser;
+package de.neuefische.backend.appuser;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +26,14 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
     }
     @Test
     @WithMockUser(username = "admin", roles = "BASIC")
-    void me_whenAppUserisLoogedIn_thenReturn200() throws Exception {
+    void me_whenAppUserIsLoginIn_thenReturn200() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/app-users/me"))
                 .andExpectAll(MockMvcResultMatchers.status().isOk()
                 );
     }
 
     @Test
-    void Loggin_whenAppUserIsNotExist_thenReturn401() throws Exception {
+    void Login_whenAppUserIsNotExist_thenReturn401() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/app-users/login")).
                 andExpectAll(MockMvcResultMatchers.status().isUnauthorized()
                 );
@@ -41,7 +41,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
     @Test
     @WithMockUser(username = "admin", roles = "BASIC")
-    void Loggin_whenAppUserIsExist_thenReturn200() throws Exception {
+    void Login_whenAppUserIsExist_thenReturn200() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/app-users/login"))
                 .andExpectAll(MockMvcResultMatchers.status().isOk()
                 );

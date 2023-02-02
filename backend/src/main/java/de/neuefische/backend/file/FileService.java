@@ -2,7 +2,7 @@ package de.neuefische.backend.file;
 
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.client.gridfs.model.GridFSFile;
-import de.neuefische.backend.appUser.AppUserService;
+import de.neuefische.backend.appuser.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -15,14 +15,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.annotation.processing.Generated;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Generated("*")
 public class FileService {
     private final GridFsTemplate gridFsTemplate;
     private final AppUserService appUserService;

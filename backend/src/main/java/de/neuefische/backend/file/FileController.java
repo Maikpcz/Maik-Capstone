@@ -8,13 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Generated;
 import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/files")
 @RequiredArgsConstructor
-@Generated("*")
 
 public class FileController {
     private final FileService fileService;
