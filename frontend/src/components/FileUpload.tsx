@@ -36,7 +36,7 @@ export default function FileUpload(){
                 />
             )}
             <Box sx={{border: "solid",maxWidth: "-webkit-fill-available"}}>
-                <img src={picture}/>
+                <img src={picture} alt={picture}/>
             </Box>
             <Button onClick={() => {
                 getPicture().then(() => <img src={picture}/>)
