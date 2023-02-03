@@ -1,6 +1,5 @@
 package de.neuefische.backend.file;
 
-import de.neuefische.backend.appuser.AppUserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -14,8 +13,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.nio.charset.StandardCharsets;
-
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 
 @SpringBootTest
@@ -24,12 +21,6 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 class FileControllerTest {
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private AppUserRepository appUserRepository;
-
-    @Autowired
-    private FileService fileService;
 
     @Test
     void save_WhenUserIsNotLogin_ThenReturn401() throws Exception {
@@ -111,5 +102,18 @@ class FileControllerTest {
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.MULTIPART_FORM_DATA))
                 .andExpect(MockMvcResultMatchers.content().json(expectedJson))
                 .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    void getFile_whenUserIsNotLoggedIn_shouldReturn401() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/files/1"))
+                .andExpectAll(MockMvcResultMatchers.status().isUnauthorized());
+    }
+
+    @Test
+    @WithMockUser(username = "tester")
+    void getFile_whenUserIsLoggedInAndFileDoesNotExist_shouldReturn404() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/files/1"))
+                .andExpectAll(MockMvcResultMatchers.status().isNotFound());
     }
 }
