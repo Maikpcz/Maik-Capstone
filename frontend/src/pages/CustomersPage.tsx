@@ -3,6 +3,7 @@ import React, {FormEvent, useCallback, useEffect, useState} from "react";
 import axios from "axios";
 import Customers from "../models/Customers";
 import {Box, Button, TextField} from "@mui/material";
+import FileUpload from "../components/FileUpload";
 
 export default function CustomersPage(){
 
@@ -64,6 +65,8 @@ export default function CustomersPage(){
     return(
         <div>
             <h1>CustomerPage</h1>
+            {}
+            <FileUpload/>
             <Box component={"form"}
                  onSubmit={EditCustomer}
                  sx={{display: "flex",
@@ -156,7 +159,7 @@ export default function CustomersPage(){
                            onChange={handleChange}
                 />
 
-                <Button variant={"contained"} type={"submit"}>Add Customer</Button>
+                <Button variant={"contained"} type={"submit"}>Edit Customer</Button>
 
                 <Button variant={"contained"} onClick={() => navigate("/")}>Homepage</Button>
 

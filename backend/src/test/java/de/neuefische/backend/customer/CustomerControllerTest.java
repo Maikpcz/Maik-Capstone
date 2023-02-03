@@ -58,6 +58,13 @@ class CustomerControllerTest {
 
     // FindBy Methode
     @Test
+    void FindBy_whenAppUserNotLoggedIn_thenReturn401() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/customers/1"))
+                .andExpectAll(
+                        MockMvcResultMatchers.status().isUnauthorized()
+                );
+    }
+    @Test
     @WithMockUser
     void FindById_whenAppUserIsLoggedLookingForCustomerWithId_thenReturn200() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/customers/1"))
@@ -289,7 +296,6 @@ class CustomerControllerTest {
     @Test
     @WithMockUser(username = "maik",password = "123")
     void setStatusDeclined_whenAppUserIsLoggedAndIs_thenReturn200() throws Exception {
-        //Man muss sich erstmal sich ein App User erstellen damit sich der MockUser einloggen!!!!
         mockMvc.perform(MockMvcRequestBuilders.post("/api/app-users")
                         .contentType(MediaType.APPLICATION_JSON).content(
                                 """
@@ -340,7 +346,8 @@ class CustomerControllerTest {
                                               }
                                               """)
         );
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/customers/status/declined").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/customers/status/declined")
+                .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                            {
                            "id": "1",

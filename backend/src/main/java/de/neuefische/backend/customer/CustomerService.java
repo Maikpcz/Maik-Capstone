@@ -1,6 +1,6 @@
 package de.neuefische.backend.customer;
 
-import de.neuefische.backend.appUser.AppUserService;
+import de.neuefische.backend.appuser.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +14,7 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
     private final AppUserService appUserService;
+
 
     public List<Customer> getAll() {
         return customerRepository.findAllByCreatedBy(
