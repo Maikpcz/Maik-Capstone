@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -12,6 +13,10 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.nio.charset.StandardCharsets;
+
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -46,61 +51,65 @@ class FileControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/app-users")
                         .contentType(MediaType.APPLICATION_JSON).content(
                                 """
-                                {
-                                "id": "1",
-                                "username": "maik",
-                                "password": "123"
-                                }
-                                """)).andExpectAll(MockMvcResultMatchers.status().isOk()).
+                                        {
+                                        "id": "1",
+                                        "username": "maik",
+                                        "password": "123"
+                                        }
+                                        """)).andExpectAll(MockMvcResultMatchers.status().isOk()).
                 andExpect(MockMvcResultMatchers.content().json("""
-                                                {
-                                                "id": "1",
-                                                "username": "maik",
-                                                "password": ""
-                                                }
-                                                """));
+                        {
+                        "id": "1",
+                        "username": "maik",
+                        "password": ""
+                        }
+                        """));
         mockMvc.perform(MockMvcRequestBuilders.post("/api/files").contentType(
-                MediaType.MULTIPART_FORM_DATA).content(String.valueOf(mockMultipartFile))).
+                        MediaType.MULTIPART_FORM_DATA).content(String.valueOf(mockMultipartFile))).
                 andExpectAll(MockMvcResultMatchers.status().isBadRequest());
     }
-   /* @Test
+
+    @Test
     @WithMockUser
     void save_whenUserIsLoginAndFileIsValid_thenReturnIsOK() throws Exception {
+
         MockMultipartFile mockMultipartFile = new MockMultipartFile(
                 "file",
                 "filename.txt",
                 "multipart/form-data",
                 "some xml".getBytes());
-        String expectedJson = ("""
+
+        String expectedJson = """
                 {
-                "id": "5",
-                "fileName": "filename.txt",
-                "contentType": "multipart"
+                "name": "filename.txt",
+                "contentType": "multipart/form-data",
+                "size": 8,
+                "createdBy": "1"
                 }
-                """);
+                """;
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/app-users")
                         .contentType(MediaType.APPLICATION_JSON).content(
                                 """
-                                {
-                                "id": "1",
-                                "username": "maik",
-                                "password": "123"
-                                }
-                                """)).andExpectAll(MockMvcResultMatchers.status().isOk()).
+                                        {
+                                        "id": "1",
+                                        "username": "maik",
+                                        "password": "123"
+                                        }
+                                        """)).andExpectAll(MockMvcResultMatchers.status().isOk()).
                 andExpect(MockMvcResultMatchers.content().json("""
-                                                {
-                                                "id": "1",
-                                                "username": "maik",
-                                                "password": ""
-                                                }
-                                                """));
+                        {
+                        "id": "1",
+                        "username": "maik",
+                        "password": ""
+                        }
+                        """));
         mockMvc.perform(MockMvcRequestBuilders.multipart("/api/files")
                         .file(mockMultipartFile)
-                        .param("some-random","4")
-                        .contentType(
-                        MediaType.MULTIPART_FORM_DATA).content(expectedJson))
-                .andExpectAll(MockMvcResultMatchers.content().contentType(expectedJson))
-                .andExpectAll(MockMvcResultMatchers.status().isOk());
-   }*/
+                        .with(httpBasic("maik", "123"))
+                        .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)
+                        .header(HttpHeaders.CONTENT_TYPE, MediaType.MULTIPART_FORM_DATA))
+                .andExpect(MockMvcResultMatchers.content().json(expectedJson))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
 }
