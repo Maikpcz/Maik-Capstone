@@ -38,9 +38,11 @@ export default function FileUpload(){
             <Box sx={{border: "solid",maxWidth: "-webkit-fill-available"}}>
                 <img src={picture} alt={picture}/>
             </Box>
+
             <Button onClick={() => {
                 getPicture().then(() => <img src={picture}/>)
             }}>Show Picture</Button>
+
             <form onSubmit={async (e) => {
                 // FILE UPLOAD
                 e.preventDefault();
