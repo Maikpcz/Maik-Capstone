@@ -32,23 +32,41 @@ export default function LoginPage(){
     }, [navigate, password, username]);
     return(
         <>
-        <Box component={"form"} onSubmit={login} sx={{flexDirection: 'column', alignItems: 'center', width: 1, justifyContent: "center", height: "100%", display: "flex", mt: 16}}>
+        <Box component={"form"} onSubmit={login} sx={{
+            flexDirection: 'column',
+            alignItems: 'center',
+            width: 1,
+            justifyContent: "center",
+            height: "100%",
+            display: "flex",
+            mt: 16,
+            marginRight: 1,
+            }
+        }>
+
             <h1>LoginPage</h1>
 
             {error && <div>{error}</div>}
 
-                <div>
-                    <TextField variant={"outlined"}
+                <Box sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center"
+                }}>
+                    <TextField
+                        margin={"dense"}
+                    variant={"outlined"}
                     placeholder={"username"}
                     value={username}
                     name={"username"}
                     required={true}
                     onChange={e => setUsername(e.target.value)}
                     />
-                </div>
 
-                <div>
-                    <TextField variant={"outlined"}
+
+
+                    <TextField
+                        variant={"outlined"}
                         placeholder={"password"}
                         type={"password"}
                         name={"passwod"}
@@ -56,11 +74,16 @@ export default function LoginPage(){
                         required={true}
                         onChange={e => setPassword(e.target.value)}
                         />
-                </div>
 
-                <Button variant={"contained"} type={"submit"}>Login</Button>
+                    <Box>
 
-            <Button variant={"contained"} onClick={() => navigate("/signup")}>Sign up</Button>
+                    <Button sx={{mt: 1, marginRight: 1, marginBottom: 1}} variant={"contained"} type={"submit"} >Login</Button>
+
+                    <Button sx={{mt: 1,marginRight: 1, marginBottom: 1}} variant={"contained"} onClick={() => navigate("/signup")}>Sign up</Button>
+
+                    </Box>
+                </Box>
+
         </Box>
 
         </>

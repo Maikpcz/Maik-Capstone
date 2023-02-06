@@ -69,12 +69,17 @@ export default function CustomersPage(){
             <FileUpload/>
             <Box component={"form"}
                  onSubmit={EditCustomer}
-                 sx={{display: "flex",
-                     flexDirection: "column"}}>
+                 sx=
+                     {{display: "flex",
+                     flexDirection: "column",}}>
 
-                <Box sx={{border: "solid",
-                    display: "inline-grid",
-                    marginBottom: 1}}>
+                <Box sx={{
+                    border: "solid",
+                    display: "flex",
+                    marginBottom: 1,
+                    flexDirection: "column",
+                    alignItems: "center"
+                }}>
 
                     <TextField variant={"standard"} size={"small"}
                                label={"firstname"}
@@ -140,7 +145,8 @@ export default function CustomersPage(){
                 />
 
 
-                <TextField variant={"standard"} multiline={true}
+                <TextField variant={"standard"}
+                           multiline={true}
                            rows={4}
                            margin={"normal"}
                            label={"description"}
@@ -150,7 +156,8 @@ export default function CustomersPage(){
                 />
 
 
-                <TextField variant={"standard"} multiline={true}
+                <TextField variant={"standard"}
+                           multiline={true}
                            rows={4}
                            margin={"normal"}
                            label={"notes"}
