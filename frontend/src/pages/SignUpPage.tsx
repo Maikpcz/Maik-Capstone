@@ -43,13 +43,13 @@ export default function SignUpPage(){
     return(
         <Box component={"form"}
              onSubmit={signUp}
-             sx={{flexDirection: 'column',
+             sx={{
+                 flexDirection: 'column',
                  alignItems: 'center',
-                 width: 1,
                  justifyContent: "center",
-                 height: "100%",
                  display: "flex",
-                 mt: 16}}>
+                 mt: 16,
+        }}>
 
             <h1>SignUp</h1>
 
@@ -61,13 +61,15 @@ export default function SignUpPage(){
                 name={"username"}
                 onChange={handleChange}
             />
-            <TextField variant={"outlined"}
+            <TextField
+                margin={"dense"}
+                variant={"outlined"}
                  placeholder={"password"}
                  type={"password"}
                  name={"password"}
                  onChange={handleChange}
                  />
-            <Button variant={"contained"} size={"medium"} type={"submit"}>Sign Up</Button>
+            <Button sx={{mt: 1, marginBottom: 1}} variant={"contained"} size={"medium"} type={"submit"}>Sign Up</Button>
         </Box>
     )
 }

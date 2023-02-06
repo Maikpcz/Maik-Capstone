@@ -16,6 +16,6 @@ export default  function LogoutButton(){
     )
 
     return(
-        <Button variant={"outlined"} onClick={logout}>logout</Button>
+        <Button variant={"outlined"} color={"inherit"} onClick={logout}>logout</Button>
     )
 }

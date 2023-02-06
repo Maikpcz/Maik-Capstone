@@ -46,9 +46,11 @@ export default function AddCustomersPage(){
                  sx={{display: "flex",
                      flexDirection: "column"}}>
 
-                <Box sx={{border: "solid",
-                    display: "inline-grid",
-                    marginBottom: 1}}>
+                <Box sx={
+                    {border: "solid",
+                    display: "flex",
+                    marginBottom: 1,
+                    }}>
 
                 <TextField variant={"standard"} size={"small"}
                     label={"firstname"}
@@ -59,11 +61,11 @@ export default function AddCustomersPage(){
                     />
 
                 <TextField variant={"standard"}
-                label={"surname"}
-                value={credentials.surname}
-                required={true}
-                name={"surname"}
-                onChange={handleChange}
+                    label={"surname"}
+                    value={credentials.surname}
+                    required={true}
+                    name={"surname"}
+                    onChange={handleChange}
                 />
 
                 <TextField variant={"standard"}
@@ -75,10 +77,10 @@ export default function AddCustomersPage(){
                 />
 
                 <TextField variant={"standard"}
-                label={"postalCode"}
-                value={credentials.postalCode}
-                name={"postalCode"}
-                onChange={handleChange}
+                    label={"postalCode"}
+                    value={credentials.postalCode}
+                    name={"postalCode"}
+                    onChange={handleChange}
                 />
 
                     <TextField variant={"standard"}
@@ -99,29 +101,31 @@ export default function AddCustomersPage(){
                         onChange={handleChange}
                     />
                     <TextField variant={"standard"}
-                    label={"reason"}
-                    value={credentials.reason}
-                    required={true}
-                    name={"reason"}
-                    onChange={handleChange}
+                        label={"reason"}
+                        value={credentials.reason}
+                        required={true}
+                        name={"reason"}
+                        onChange={handleChange}
+                    />
+
+
+                    <TextField
+                        variant={"standard"}
+                        multiline={true}
+                        rows={4}
+                        label={"description"}
+                        value={credentials.description}
+                        name={"description"}
+                        onChange={handleChange}
                     />
 
 
                     <TextField variant={"standard"} multiline={true}
-                               rows={4}
-                    label={"description"}
-                    value={credentials.description}
-                    name={"description"}
-                    onChange={handleChange}
-                    />
-
-
-                    <TextField variant={"standard"} multiline={true}
-                               rows={4}
-                    label={"notes"}
-                    value={credentials.notes}
-                    name={"notes"}
-                    onChange={handleChange}
+                        rows={4}
+                        label={"notes"}
+                        value={credentials.notes}
+                        name={"notes"}
+                        onChange={handleChange}
                     />
 
                 <Button variant={"contained"} type={"submit"}>Add Customer</Button>

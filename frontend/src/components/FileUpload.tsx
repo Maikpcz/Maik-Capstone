@@ -39,9 +39,7 @@ export default function FileUpload(){
                 <img src={picture} alt={picture}/>
             </Box>
 
-            <Button onClick={() => {
-                getPicture().then(() => <img src={picture}/>)
-            }}>Show Picture</Button>
+            <Button onClick={getPicture}>Show Picture</Button>
 
             <form onSubmit={async (e) => {
                 // FILE UPLOAD
