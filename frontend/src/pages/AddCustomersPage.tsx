@@ -2,7 +2,8 @@ import {useNavigate} from "react-router-dom";
 import React, {FormEvent, useCallback, useState} from "react";
 import Customers from "../models/Customers";
 import axios from "axios";
-import {Box, Button, TextField, Typography} from "@mui/material";
+import {Box, Button, TextField} from "@mui/material";
+import Toolbar from "../components/Toolbar";
 
 export default function AddCustomersPage(){
 
@@ -40,7 +41,7 @@ export default function AddCustomersPage(){
 
     return(
         <div>
-            <Typography>AddCustomersPage</Typography>
+            <Toolbar/>
             <Box component={"form"}
                  onSubmit={AddCustomer}
                  sx={{display: "flex",
@@ -129,9 +130,6 @@ export default function AddCustomersPage(){
                     />
 
                 <Button variant={"contained"} type={"submit"}>Add Customer</Button>
-
-                <Button variant={"contained"} onClick={() => navigate("/")}>Homepage</Button>
-
             </Box>
         </div>
     )
