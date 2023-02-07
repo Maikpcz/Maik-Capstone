@@ -35,8 +35,17 @@ export default function FileUpload(){
                     alt={"preview"}
                 />
             )}
-            <Box sx={{border: "solid",maxWidth: "-webkit-fill-available"}}>
-                <img src={picture} alt={picture}/>
+
+            <Box sx={{
+                border: "solid"}}
+                 width={200}
+                 height={200}
+            >
+                <img style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain"
+                }} src={picture} alt={picture}/>
             </Box>
 
             <Button onClick={getPicture}>Show Picture</Button>
@@ -55,9 +64,6 @@ export default function FileUpload(){
                     alert(JSON.stringify(res.data, null, 2));
                 }
             }}>
-                <Button onClick={() => {
-                    fileInputRef.current?.click();
-                }}> UPLOAD IMAGE</Button>
 
                 <input
                     ref={fileInputRef}
@@ -72,17 +78,6 @@ export default function FileUpload(){
 
                         setFile(e.target.files[0]);
 
-                        // PREVIEW
-                        const reader = new FileReader();
-
-                        reader.addEventListener("load", () => {
-                            // convert image file to base64 string
-                            setImgPreview(reader.result as string);
-                        }, false);
-
-                        if (file) {
-                            reader.readAsDataURL(file);
-                        }
                     }}
                     accept={"image/png"}
                 />
