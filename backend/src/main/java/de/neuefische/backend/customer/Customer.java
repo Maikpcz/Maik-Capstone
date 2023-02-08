@@ -17,6 +17,5 @@ public class Customer {
     private String reason;
     private String description;
     private String notes;
-    private String imgId;
     private String createdBy;
 }

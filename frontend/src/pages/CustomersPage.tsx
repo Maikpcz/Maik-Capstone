@@ -9,7 +9,7 @@ import OldCustomerForm from "../components/OldCustomerForm";
 
 export default function CustomersPage(){
 
-    const [customer, setCustomer] = useState<Customers>({
+    const [custemor, setCustemor] = useState<Customers>({
         id: "",
         firstname: "",
         surname: "",
@@ -28,11 +28,12 @@ export default function CustomersPage(){
     useEffect(() => {
         (async () => {
             const response = await axios.get("/api/customers/" + id);
-            setCustomer(response.data)
+            setCustemor(response.data)
         })();
     }, []);
 
-    console.log(customer)
+
+    console.log(custemor)
     return(
         <Box margin={"auto"}>
             <Toolbar/>
@@ -41,16 +42,16 @@ export default function CustomersPage(){
                 <FileUpload/>
             </Box>
 
-            <OldCustomerForm firstname={customer.firstname}
-                             surname={customer.surname}
-                             address={customer.address}
-                             postalCode={customer.postalCode}
-                             phonenumber={customer.phonenumber}
-                             status={customer.status}
-                             credit={customer.credit}
-                             reason={customer.reason}
-                             description={customer.description}
-                             notes={customer.notes}/>
+            <OldCustomerForm firstname={custemor.firstname}
+                             surname={custemor.surname}
+                             address={custemor.address}
+                             postalCode={custemor.postalCode}
+                             phonenumber={custemor.phonenumber}
+                             status={custemor.status}
+                             credit={custemor.credit}
+                             reason={custemor.reason}
+                             description={custemor.description}
+                             notes={custemor.notes}/>
         </Box>
     )
 }

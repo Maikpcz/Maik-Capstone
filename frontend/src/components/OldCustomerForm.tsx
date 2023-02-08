@@ -3,11 +3,12 @@ import React, {FormEvent, useCallback, useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import Customers from "../models/Customers";
 import axios from "axios";
+import customers from "../models/Customers";
 
-export default function OldCustomerForm(){
+export default function OldCustomerForm(Customer : customers){
     const navigate = useNavigate()
 
-    const [custemor, setCustemor] = useState<Customers>({
+    const [customer, setCustomer] = useState<Customers>({
         id: "",
         firstname: "",
         surname: "",
@@ -26,36 +27,36 @@ export default function OldCustomerForm(){
     useEffect(() => {
         (async () => {
             const response = await axios.get("/api/customers/" + id);
-            setCustemor(response.data)
+            setCustomer(response.data)
         })();
     }, []);
 
     const handleChange = useCallback(
         (event: React.ChangeEvent<HTMLInputElement>) => {
             const {name, value} = event.target;
-            setCustemor({...custemor, [name]: value});
+            setCustomer({...customer, [name]: value});
         },
-        [custemor, setCustemor]
+        [customer, setCustomer]
     );
     const EditCustomer = useCallback(
         async (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
 
-            await axios.put("/api/customers",custemor);
+            await axios.put("/api/customers",customer);
             navigate("/");
         },
-        [custemor, navigate]
+        [customer, navigate]
     );
 
     async function ChangeCustomerStatusAssumed() {
-        await axios.post("/api/customers/status/assumed", custemor);
+        await axios.post("/api/customers/status/assumed", customer);
     }
     async function ChangeCustomerStatusDeclined() {
-        await axios.post("/api/customers/status/declined", custemor);
+        await axios.post("/api/customers/status/declined", customer);
     }
 
     async function deleteCustomer(){
-        await axios.delete("/api/customers/" + custemor.id)
+        await axios.delete("/api/customers/" + customer.id)
     }
     return(
         <>
@@ -74,7 +75,7 @@ export default function OldCustomerForm(){
                     variant={"outlined"}
                     label={"firstname"}
                     margin={"normal"}
-                    value={custemor.firstname}
+                    value={customer.firstname}
                     required={true}
                     name={"firstname"}
                     onChange={handleChange}
@@ -85,7 +86,7 @@ export default function OldCustomerForm(){
                     variant={"outlined"}
                     margin={"normal"}
                     label={"surname"}
-                    value={custemor.surname}
+                    value={customer.surname}
                     required={true}
                     name={"surname"}
                     onChange={handleChange}
@@ -96,7 +97,7 @@ export default function OldCustomerForm(){
                     variant={"outlined"}
                     label={"address"}
                     margin={"normal"}
-                    value={custemor.address}
+                    value={customer.address}
                     required={true}
                     name={"address"}
                     onChange={handleChange}
@@ -106,8 +107,8 @@ export default function OldCustomerForm(){
                     <TextField
                     variant={"outlined"}
                     margin={"normal"}
-                    label={custemor.postalCode}
-                    value={custemor.postalCode}
+                    label={customer.postalCode}
+                    value={customer.postalCode}
                     name={"postalCode"}
                     onChange={handleChange}
                     />
@@ -117,7 +118,7 @@ export default function OldCustomerForm(){
                     variant={"outlined"}
                     label={"phonenumber"}
                     margin={"normal"}
-                    value={custemor.phonenumber}
+                    value={customer.phonenumber}
                     required={true}
                     name={"phonenumber"}
                     onChange={handleChange}
@@ -133,19 +134,19 @@ export default function OldCustomerForm(){
                 variant={"outlined"}
                 label={"credit"}
                 margin={"normal"}
-                value={custemor.credit}
+                value={customer.credit}
                 required={true}
                 name={"credit"}
                 onChange={handleChange}
                 />
 
-                <Typography mt={4}>Status = {custemor.status}</Typography>
+                <Typography mt={4}>Status = {customer.status}</Typography>
 
                 <TextField
                 variant={"outlined"}
                 label={"reason"}
                 margin={"normal"}
-                value={custemor.reason}
+                value={customer.reason}
                 required={true}
                 name={"reason"}
                 onChange={handleChange}
@@ -162,7 +163,7 @@ export default function OldCustomerForm(){
                 rows={4}
                 margin={"normal"}
                 label={"description"}
-                value={custemor.description}
+                value={customer.description}
                 name={"description"}
                 onChange={handleChange}/>
 
@@ -177,7 +178,7 @@ export default function OldCustomerForm(){
                 rows={4}
                 margin={"normal"}
                 label={"notes"}
-                value={custemor.notes}
+                value={customer.notes}
                 name={"notes"}
                 onChange={handleChange}
                 />
