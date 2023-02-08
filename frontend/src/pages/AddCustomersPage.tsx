@@ -2,7 +2,7 @@ import {useNavigate} from "react-router-dom";
 import React, {FormEvent, useCallback, useState} from "react";
 import Customers from "../models/Customers";
 import axios from "axios";
-import {Box, Button, TextField} from "@mui/material";
+import {Box, Button, TextField, Typography} from "@mui/material";
 import Toolbar from "../components/Toolbar";
 
 export default function AddCustomersPage(){
@@ -40,20 +40,28 @@ export default function AddCustomersPage(){
     );
 
     return(
-        <div>
-            <Toolbar/>
+        <Box margin={"auto"}>
+            <Box>
+                <Toolbar/>
+            </Box>
             <Box component={"form"}
                  onSubmit={AddCustomer}
-                 sx={{display: "flex",
+                 sx={{
+                     display: "flex",
                      flexDirection: "column"}}>
 
-                <Box sx={
-                    {border: "solid",
+                <Box sx={{
+                    border: "solid",
                     display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
                     marginBottom: 1,
+                    mt: 3
                     }}>
 
-                <TextField variant={"standard"} size={"small"}
+                <TextField
+                    margin={"normal"}
+                    variant={"outlined"}
                     label={"firstname"}
                     value={credentials.firstname}
                     required={true}
@@ -61,7 +69,9 @@ export default function AddCustomersPage(){
                     onChange={handleChange}
                     />
 
-                <TextField variant={"standard"}
+                <TextField
+                    margin={"normal"}
+                    variant={"outlined"}
                     label={"surname"}
                     value={credentials.surname}
                     required={true}
@@ -69,7 +79,9 @@ export default function AddCustomersPage(){
                     onChange={handleChange}
                 />
 
-                <TextField variant={"standard"}
+                <TextField
+                    margin={"normal"}
+                    variant={"outlined"}
                     label={"address"}
                     value={credentials.address}
                     required={true}
@@ -77,60 +89,81 @@ export default function AddCustomersPage(){
                     onChange={handleChange}
                 />
 
-                <TextField variant={"standard"}
+                <TextField
+                    margin={"normal"}
+                    variant={"outlined"}
                     label={"postalCode"}
                     value={credentials.postalCode}
                     name={"postalCode"}
                     onChange={handleChange}
                 />
 
-                    <TextField variant={"standard"}
+                <TextField
+                    margin={"normal"}
+                    variant={"outlined"}
                     label={"phonenumber"}
                     value={credentials.phonenumber}
                     required={true}
                     name={"phonenumber"}
                     onChange={handleChange}
-                    />
+                />
 
                 </Box>
 
-                    <TextField variant={"standard"}
-                        label={"credit"}
-                        value={credentials.credit}
-                        required={true}
-                        name={"credit"}
-                        onChange={handleChange}
+                <Box display={"flex"}
+                     justifyContent={"space-evenly"}>
+
+                    <TextField
+                    variant={"outlined"}
+                    label={"credit"}
+                    value={credentials.credit}
+                    required={true}
+                    name={"credit"}
+                    onChange={handleChange}
                     />
-                    <TextField variant={"standard"}
-                        label={"reason"}
-                        value={credentials.reason}
-                        required={true}
-                        name={"reason"}
-                        onChange={handleChange}
+
+                    <Typography
+                        sx={{mt: 2}}>
+                        Status = OPEN
+                    </Typography>
+
+                    <TextField
+                    variant={"outlined"}
+                    label={"reason"}
+                    value={credentials.reason}
+                    required={true}
+                    name={"reason"}
+                    onChange={handleChange}
+                    />
+                </Box>
+
+                    <TextField
+                    sx={{mt: 1}}
+                    variant={"outlined"}
+                    multiline={true}
+                    rows={4}
+                    label={"description"}
+                    value={credentials.description}
+                    name={"description"}
+                    onChange={handleChange}
                     />
 
 
                     <TextField
-                        variant={"standard"}
-                        multiline={true}
-                        rows={4}
-                        label={"description"}
-                        value={credentials.description}
-                        name={"description"}
-                        onChange={handleChange}
+                    sx={{mt: 1}}
+                    variant={"outlined"}
+                    multiline={true}
+                    rows={4}
+                    label={"notes"}
+                    value={credentials.notes}
+                    name={"notes"}
+                    onChange={handleChange}
                     />
 
-
-                    <TextField variant={"standard"} multiline={true}
-                        rows={4}
-                        label={"notes"}
-                        value={credentials.notes}
-                        name={"notes"}
-                        onChange={handleChange}
-                    />
-
+                <Box display={"flex"} justifyContent={"center"} mt={1}>
                 <Button variant={"contained"} type={"submit"}>Add Customer</Button>
+                </Box>
             </Box>
-        </div>
+        </Box>
     )
 }

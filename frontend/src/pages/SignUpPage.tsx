@@ -69,6 +69,7 @@ export default function SignUpPage(){
                  name={"password"}
                  onChange={handleChange}
                  />
+
             <Button sx={{mt: 1, marginBottom: 1}} variant={"contained"} size={"medium"} type={"submit"}>Sign Up</Button>
         </Box>
     )
