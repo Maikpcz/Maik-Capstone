@@ -45,4 +45,8 @@ public class CustomerService {
         customer.setStatus(CustomerStatus.DECLINED);
         return customerRepository.save(customer);
     }
+
+    public Customer save(Customer customer) {
+        return customerRepository.save(customer);
+    }
 }
