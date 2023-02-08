@@ -1,11 +1,10 @@
 import {Box, Button, TextField, Typography} from "@mui/material";
 import React, {FormEvent, useCallback, useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import Customers from "../models/Customers";
 import axios from "axios";
-import customers from "../models/Customers";
+import Customers from "../models/Customers";
 
-export default function OldCustomerForm(Customer : customers){
+export default function OldCustomerForm(Customer : Customers){
     const navigate = useNavigate()
 
     const [customer, setCustomer] = useState<Customers>({
