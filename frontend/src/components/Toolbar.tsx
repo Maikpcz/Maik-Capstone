@@ -8,8 +8,8 @@ export default function (){
     const navigate = useNavigate()
 
     return(
-        <AppBar sx={{backgroundColor: "gray"}} position="static">
-            <Toolbar sx={{display: "flex", justifyContent: "space-around"}} variant="dense">
+        <AppBar style={{margin: 0}} sx={{backgroundColor: "gray", margin: "none"}} position="static">
+            <Toolbar sx={{display: "flex", justifyContent: "space-around" }} variant="dense">
                 <IconButton sx={{ mr: 2 }} color="inherit">
                     <LogoutButton/>
                 </IconButton>

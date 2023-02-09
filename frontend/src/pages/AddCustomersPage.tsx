@@ -19,6 +19,7 @@ export default function AddCustomersPage(){
         credit: 0,
         reason: "",
         description: "",
+        imagesId: "",
         notes: ""
     });
 
