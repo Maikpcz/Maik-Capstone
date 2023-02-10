@@ -10,6 +10,7 @@ import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
+
     <BrowserRouter>
       <Routes>
         <Route path={"/signup"} element={<SignUpPage/>}/>

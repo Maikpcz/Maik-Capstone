@@ -10,6 +10,7 @@
      reason: string,
      description: string
      notes: string,
+      imagesId: string,
      createdBy?: string
 }
 export default Customers;

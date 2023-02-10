@@ -2,6 +2,7 @@ import React, {FormEvent, useCallback, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {Box, Button, TextField} from "@mui/material";
+import "./global.css";
 
 export default function LoginPage(){
     const [username, setUsername] = useState("")

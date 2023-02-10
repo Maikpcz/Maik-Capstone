@@ -37,6 +37,7 @@ class CustomerServiceTest {
                "",
                "",
                "",
+               "",
                ""
        );
        CustomerRepository customerRepository = mock(CustomerRepository.class);
@@ -59,6 +60,7 @@ class CustomerServiceTest {
                 1234567890,
                 "OPEN",
                 5000,
+                "",
                 "",
                 "",
                 "",
@@ -118,7 +120,8 @@ class CustomerServiceTest {
                         "",
                         "",
                         "",
-                        "1"),
+                        "",
+                                "1"),
                 new Customer("6",
                         "uwe",
                         "La",
@@ -130,7 +133,8 @@ class CustomerServiceTest {
                         "",
                         "",
                         "",
-                        "1")
+                        "",
+                            "1")
         ));
 
         CustomerRepository customerRepository = mock(CustomerRepository.class);
@@ -155,6 +159,7 @@ class CustomerServiceTest {
                         "",
                         "",
                         "",
+                        "",
                         "1"),
                 new Customer(
                         "6",
@@ -165,6 +170,7 @@ class CustomerServiceTest {
                         1005,
                         "",
                         54,
+                        "",
                         "",
                         "",
                         "",
@@ -220,6 +226,7 @@ class CustomerServiceTest {
                 "",
                 "",
                 "",
+                "",
                 "1");
 
         Customer expect = new Customer(
@@ -234,7 +241,8 @@ class CustomerServiceTest {
                 "",
                 "",
                 "",
-                "1");
+                "1",
+                "");
 
         CustomerRepository customerRepository = mock(CustomerRepository.class);
         AppUserService appUserService = mock(AppUserService.class);
@@ -262,7 +270,8 @@ class CustomerServiceTest {
                 "",
                 "",
                 "",
-                "1");
+                "1",
+                "");
 
         Customer expect = new Customer(
                 "5",
@@ -276,7 +285,8 @@ class CustomerServiceTest {
                 "",
                 "",
                 "",
-                "1");
+                "1",
+                "");
 
         CustomerRepository customerRepository = mock(CustomerRepository.class);
         AppUserService appUserService = mock(AppUserService.class);

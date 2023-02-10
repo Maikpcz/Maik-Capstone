@@ -2,6 +2,7 @@ import React, {FormEvent, useCallback, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {Box, Button, TextField} from "@mui/material";
+import "./global.css";
 
 export default function SignUpPage(){
 
@@ -41,7 +42,9 @@ export default function SignUpPage(){
 
 
     return(
+
         <Box component={"form"}
+
              onSubmit={signUp}
              sx={{
                  flexDirection: 'column',
@@ -55,7 +58,8 @@ export default function SignUpPage(){
 
             {error && <div>{error}</div>}
 
-            <TextField variant={"outlined"}
+            <TextField
+                variant={"outlined"}
                 placeholder={"username"}
                 value={credentials.username}
                 name={"username"}
@@ -70,7 +74,10 @@ export default function SignUpPage(){
                  onChange={handleChange}
                  />
 
-            <Button sx={{mt: 1, marginBottom: 1}} variant={"contained"} size={"medium"} type={"submit"}>Sign Up</Button>
+            <Button sx={{
+                mt: 1,
+                marginBottom: 1
+            }} variant={"contained"} size={"medium"} type={"submit"}>Sign Up</Button>
         </Box>
     )
 }
