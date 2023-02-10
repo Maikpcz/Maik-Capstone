@@ -1,6 +1,7 @@
 import {Box} from "@mui/material";
 import Cards from "../components/Cards";
 import Toolbar from "../components/Toolbar";
+import "./global.css";
 
 export default function Homepage() {
 

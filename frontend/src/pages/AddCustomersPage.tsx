@@ -2,8 +2,9 @@ import {useNavigate} from "react-router-dom";
 import React, {FormEvent, useCallback, useState} from "react";
 import Customers from "../models/Customers";
 import axios from "axios";
-import {Box, Button, TextField, Typography} from "@mui/material";
+import {Box, Button, TextField} from "@mui/material";
 import Toolbar from "../components/Toolbar";
+import "./global.css";
 
 export default function AddCustomersPage(){
 
@@ -52,16 +53,15 @@ export default function AddCustomersPage(){
                      flexDirection: "column"}}>
 
                 <Box sx={{
-                    border: "solid",
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "space-between",
-                    marginBottom: 1,
-                    mt: 3
+                    alignItems: "center",
+                    marginRight: 54
                     }}>
 
                 <TextField
                     margin={"normal"}
+                    size={"small"}
                     variant={"outlined"}
                     label={"firstname"}
                     value={credentials.firstname}
@@ -72,6 +72,7 @@ export default function AddCustomersPage(){
 
                 <TextField
                     margin={"normal"}
+                    size={"small"}
                     variant={"outlined"}
                     label={"surname"}
                     value={credentials.surname}
@@ -82,6 +83,7 @@ export default function AddCustomersPage(){
 
                 <TextField
                     margin={"normal"}
+                    size={"small"}
                     variant={"outlined"}
                     label={"address"}
                     value={credentials.address}
@@ -92,15 +94,18 @@ export default function AddCustomersPage(){
 
                 <TextField
                     margin={"normal"}
+                    size={"small"}
                     variant={"outlined"}
                     label={"postalCode"}
                     value={credentials.postalCode}
+                    required={true}
                     name={"postalCode"}
                     onChange={handleChange}
                 />
 
                 <TextField
                     margin={"normal"}
+                    size={"small"}
                     variant={"outlined"}
                     label={"phonenumber"}
                     value={credentials.phonenumber}
@@ -112,21 +117,17 @@ export default function AddCustomersPage(){
                 </Box>
 
                 <Box display={"flex"}
-                     justifyContent={"space-evenly"}>
-
+                     justifyContent={"space-around"}
+                >
                     <TextField
                     variant={"outlined"}
+                    sx={{marginRight: 2}}
                     label={"credit"}
                     value={credentials.credit}
                     required={true}
                     name={"credit"}
                     onChange={handleChange}
                     />
-
-                    <Typography
-                        sx={{mt: 2}}>
-                        Status = OPEN
-                    </Typography>
 
                     <TextField
                     variant={"outlined"}
@@ -137,9 +138,11 @@ export default function AddCustomersPage(){
                     onChange={handleChange}
                     />
                 </Box>
-
+                <Box display={"flex"}
+                     flexDirection={"column"}
+                     alignItems={"center"}>
                     <TextField
-                    sx={{mt: 1}}
+                    sx={{mt: 1,width: 630}}
                     variant={"outlined"}
                     multiline={true}
                     rows={4}
@@ -148,10 +151,14 @@ export default function AddCustomersPage(){
                     name={"description"}
                     onChange={handleChange}
                     />
+                </Box>
 
+                <Box display={"flex"}
+                     flexDirection={"column"}
+                     alignItems={"center"}>
 
                     <TextField
-                    sx={{mt: 1}}
+                    sx={{mt: 1, width: 630}}
                     variant={"outlined"}
                     multiline={true}
                     rows={4}
@@ -160,7 +167,7 @@ export default function AddCustomersPage(){
                     name={"notes"}
                     onChange={handleChange}
                     />
-
+                </Box>
                 <Box display={"flex"} justifyContent={"center"} mt={1}>
                 <Button variant={"contained"} type={"submit"}>Add Customer</Button>
                 </Box>
