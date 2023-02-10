@@ -42,13 +42,6 @@ export default function CustomersPage(){
 
     const {id} = useParams();
 
-    useEffect(() => {
-        (async () => {
-            const response = await axios.get("/api/customers/" + id);
-            setCustomer(response.data)
-        })();
-    }, []);
-
     const handleChange = useCallback(
         (event: React.ChangeEvent<HTMLInputElement>) => {
             const {name, value} = event.target;
@@ -56,6 +49,13 @@ export default function CustomersPage(){
         },
         [customer, setCustomer]
     );
+
+    useEffect( () => {
+        if (photo.id != null) {
+            customer.imagesId = photo.id
+        }
+    }, [photo.id])
+
 
     const EditCustomer = useCallback(
         async (e: FormEvent<HTMLFormElement>) => {
@@ -67,11 +67,12 @@ export default function CustomersPage(){
         [customer, navigate]
     );
 
-    useEffect( () => {
-        if (photo.id != null) {
-            customer.imagesId = photo.id
-        }
-    }, [photo.id])
+    useEffect(() => {
+        (async () => {
+            const response = await axios.get("/api/customers/" + id);
+            setCustomer(response.data)
+        })();
+    }, []);
 
 
     useEffect(() => {
@@ -80,10 +81,10 @@ export default function CustomersPage(){
                 responseType: "blob"
             })
             const urlBla = window.URL.createObjectURL(new Blob([response.data]));
-
             setPicture(urlBla)
         })();
     }, [customer.imagesId]);
+
 
 
     async function ChangeCustomerStatusAssumed() {
@@ -100,6 +101,45 @@ export default function CustomersPage(){
     return(
         <Box margin={"auto"}>
             <Toolbar/>
+            <form onSubmit={async (e) => {
+                // FILE UPLOAD
+                e.preventDefault();
+
+                if (file) {
+                    const formData = new FormData();
+                    formData.append("file", file);
+
+                    const res = await axios.post("/api/files", formData);
+                    setPhoto(res.data)
+                    console.log(photo.id ,"photo id before")
+                    console.log(customer.imagesId, " images id before")
+                }
+
+            }}>
+                <input
+                    ref={fileInputRef}
+                    type={"file"}
+                    style={{ display: "none"}}
+                    onChange={(e) => {
+                        // FILE CHANGE
+                        if (!e.target.files || e.target.files.length < 1) {
+                            setFile(null);
+                            return;
+                        }
+                        setFile(e.target.files[0]);
+
+                    }}
+                    accept={"image/png"}
+                />
+                <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                    <Button sx={{mt: 1, marginLeft: 53}} variant={"contained"} type={"submit"}>Submit</Button>
+                    <Button sx={{mt: 1, marginBottom: 1, marginLeft: 53}} variant={"contained"} onClick={() =>
+                    {fileInputRef.current?.click()}}>save</Button>
+                </Box>
+
+            </form>
+
+
 
             <Box component={"form"}
                  onSubmit={EditCustomer}
@@ -107,6 +147,7 @@ export default function CustomersPage(){
                      {{
                          display: "flex",
                          flexDirection: "column",
+                         position: "static"
                      }}>
 
                 <Box display={"flex"}
@@ -161,7 +202,6 @@ export default function CustomersPage(){
                         onChange={handleChange}
                     />
 
-
                     <TextField
                         variant={"outlined"}
                         size={"small"}
@@ -173,7 +213,7 @@ export default function CustomersPage(){
                         onChange={handleChange}
                     />
                     </Box>
-                        <Box sx={{
+                    <Box sx={{
                         border: "solid",
                         mt: 2}}
                          width={200}
@@ -184,48 +224,6 @@ export default function CustomersPage(){
                             height: "100%",
                             objectFit: "contain"
                         }} src={picture} alt={picture}/>
-
-                            <form onSubmit={async (e) => {
-                                // FILE UPLOAD
-                                e.preventDefault();
-
-                                if (file) {
-                                    const formData = new FormData();
-                                    formData.append("file", file);
-
-                                    const res = await axios.post("/api/files", formData);
-                                    setPhoto(res.data)
-                                    console.log(photo.id ,"photo id before")
-                                    console.log(customer.imagesId, " images id before")
-
-                                    alert(JSON.stringify(res.data, null, 2));
-
-                                }
-                                if (photo.id!= null)
-                                    customer.imagesId = photo.id
-
-                            }}>
-                                <input
-                                    ref={fileInputRef}
-                                    type={"file"}
-                                    style={{ display: "none"}}
-                                    onChange={(e) => {
-                                        // FILE CHANGE
-                                        if (!e.target.files || e.target.files.length < 1) {
-                                            setFile(null);
-                                            return;
-                                        }
-
-                                        setFile(e.target.files[0]);
-
-                                    }}
-                                    accept={"image/png"}
-                                />
-                                <Box sx={{display: "flex",flexDirection: "column"}}>
-                                <Button sx={{mt: 1}} variant={"contained"} type={"submit"}>Submit</Button>
-                                <Button sx={{mt: 1 , marginBottom: 1}} variant={"contained"} type={"submit"} onClick={() =>
-                                {fileInputRef.current?.click()}}>save</Button></Box>
-                            </form>
                         </Box>
                 </Box>
 
