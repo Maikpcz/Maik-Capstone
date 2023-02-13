@@ -58,10 +58,8 @@ export default function Cards(){
             <Box sx={{
                 mt: 5,
             }}>
-                <Box sx={{display: "flex", justifyContent: "space-between"}}>
 
-                    <Button sx={{ marginLeft: 30}} variant={"contained"} onClick={() => navigate("/add-customers")}>Add</Button>
-                </Box>
+                <Button sx={{marginLeft: 61}} variant={"contained"} onClick={() => navigate("/add-customers")}>Add</Button>
 
             </Box>
                     <Box sx={{ height: 400 ,width: "65%"}}>
