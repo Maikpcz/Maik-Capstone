@@ -393,4 +393,96 @@ class CustomerControllerTest {
                                               """)
         );
     }
+    @Test
+    @WithMockUser(username = "maik",password = "123")
+    void put_whenAppUserIsLoggedAndIs_thenReturn200() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/app-users")
+                        .contentType(MediaType.APPLICATION_JSON).content(
+                                """
+                                {
+                                "id": "1",
+                                "username": "maik",
+                                "password": "123"
+                                }
+                                """)).andExpectAll(MockMvcResultMatchers.status().isOk()).
+                andExpect(MockMvcResultMatchers.content().json("""
+                                                {
+                                                "id": "1",
+                                                "username": "maik",
+                                                "password": ""
+                                                }
+                                                """));
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/customers")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                           {
+                           "id": "1",
+                           "firstname": "maik",
+                           "surname": "popowicz",
+                           "address": "Musterstraße",
+                           "postalCode": "20001",
+                           "status": "",
+                           "credit": 5000,
+                           "reason": "",
+                           "description": "",
+                           "notes": "",
+                           "imagesId": "",
+                           "createdBy": "1"
+                            }
+                            """)).andExpectAll(
+                MockMvcResultMatchers.status().isOk(),
+                MockMvcResultMatchers.content().json("""
+                                              {
+                                              "id": "1",
+                                              "firstname": "maik",
+                                              "surname": "popowicz",
+                                               "address": "Musterstraße",
+                                               "postalCode": "20001",
+                                               "status": "OPEN",
+                                               "credit": 5000,
+                                               "reason": "",
+                                               "description": "",
+                                               "notes": "",
+                                               "imagesId": "",
+                                               "createdBy": "1"
+                                              }
+                                              """)
+        );
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/customers")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                           {
+                           "id": "1",
+                           "firstname": "dennis",
+                           "surname": "popowicz",
+                           "address": "Musterstraße",
+                           "postalCode": "20001",
+                           "status": "OPEN",
+                           "credit": 5000,
+                           "reason": "",
+                           "description": "",
+                           "notes": "",
+                           "imagesId": "",
+                           "createdBy": "1"
+                            }
+                            """)).andExpectAll(
+                MockMvcResultMatchers.status().isOk(),
+                MockMvcResultMatchers.content().json("""
+                                              {
+                                              "id": "1",
+                                              "firstname": "dennis",
+                                              "surname": "popowicz",
+                                               "address": "Musterstraße",
+                                               "postalCode": "20001",
+                                               "status": "OPEN",
+                                               "credit": 5000,
+                                               "reason": "",
+                                               "description": "",
+                                               "notes": "",
+                                               "imagesId": "",
+                                               "createdBy": "1"
+                                              }
+                                              """)
+        );
+    }
 }
