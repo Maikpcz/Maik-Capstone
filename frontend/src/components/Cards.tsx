@@ -1,72 +1,84 @@
-import {Box, Button, CardContent, TextField, Typography} from "@mui/material";
-import {useEffect, useState} from "react";
+import {Box, Button} from "@mui/material";
+
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Customers from "../models/Customers";
 import {useNavigate} from "react-router-dom";
+import {DataGrid, GridColDef, GridToolbar} from "@mui/x-data-grid";
+
 
 export default function Cards(){
 
-    const [customer, setCustomer] = useState<Customers[]>([])
-
-    const [nameToFilter, setNameToFilter] = useState<string>("")
+    const [customers, setCustomers] = useState<Customers[]>([])
 
     const navigate = useNavigate()
 
     useEffect(() => {
         (async () => {
             const response = await axios.get("/api/customers");
-            setCustomer(response.data);
+            setCustomers(response.data);
         })();
     }, [])
 
-    const filterList = customer.filter((customer) =>
-        customer.surname.includes(nameToFilter))
-
-
+    const columns: GridColDef[] = [
+        {
+            field: 'firstname',
+            headerName: 'First name',
+            width: 150,
+            editable: true,
+        },
+        {
+            field: 'surname',
+            headerName: 'Last name',
+            width: 150,
+            editable: true,
+        },
+        {
+            field: 'status',
+            headerName: 'Status',
+            width: 110,
+            editable: true,
+        },
+        {
+            field: 'reason',
+            headerName: 'Reason',
+            width: 110,
+            editable: true,
+        },
+        {
+            field: 'credit',
+            headerName: 'Credit',
+            width: 110,
+            editable: true,
+        }
+    ];
 
     return (
         <>
             <Box sx={{
                 mt: 5,
             }}>
-                <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                <Box sx={{display: "flex", justifyContent: "space-between"}}>
 
-                    <TextField sx={{marginLeft: 1}} label={"surname"} onChange={(e) => setNameToFilter(e.target.value)}/>
-
-                    <Button variant={"contained"} onClick={() => navigate("/add-customers")}>Add</Button>
+                    <Button sx={{ marginLeft: 30}} variant={"contained"} onClick={() => navigate("/add-customers")}>Add</Button>
                 </Box>
-                {filterList.map(customer => {
-                    return (
-                        <CardContent
-                            key={customer.id} sx={{
-                            display: 'flex',
-                            columnGap: 5,
-                            rowGap: 1,
-                            mt: 3,
-                            marginBottom: 1,
-                            marginLeft: 1,
-                            border: "solid",
-                            marginRight: 1,
-                            minWidth: 200,
-                            alignItems: "stretch"
-                        }}
-                            onClick={() => navigate("/customers/" + customer.id)}>
 
-                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>{customer.firstname}</Typography>
-
-                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>{customer.surname}</Typography>
-
-                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>{customer.status}</Typography>
-
-                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>{customer.credit}</Typography>
-
-                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom> {customer.reason}</Typography>
-
-                    </CardContent>
-                    )
-                })}
             </Box>
+                    <Box sx={{ height: 400 ,width: "65%"}}>
+                        <DataGrid onRowClick={({id}) => navigate("/customers/" + id)}
+                                  rows={customers}
+                                  columns={columns}
+                                  pageSize={5}
+                                  rowsPerPageOptions={[5]}
+                                  checkboxSelection
+                                  disableSelectionOnClick
+                                  experimentalFeatures={{ newEditingApi: true }}
 
+                                  components={{
+                                      Toolbar: GridToolbar
+                                  }}
+                        />
+                    </Box>
         </>
     )
 }
