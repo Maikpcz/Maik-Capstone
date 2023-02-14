@@ -6,7 +6,7 @@ import {Box, Button, TextField, Typography} from "@mui/material";
 import Toolbar from "../components/Toolbar";
 import FileMetadata from "../models/FileMetadata";
 
-export default function CustomersPage(){
+export default function CustomersPage() {
 
     const navigate = useNavigate()
 
@@ -50,7 +50,7 @@ export default function CustomersPage(){
         [customer, setCustomer]
     );
 
-    useEffect( () => {
+    useEffect(() => {
         if (photo.id != null) {
             customer.imagesId = photo.id
         }
@@ -61,7 +61,7 @@ export default function CustomersPage(){
         async (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
 
-            await axios.put("/api/customers",customer);
+            await axios.put("/api/customers", customer);
             navigate("/");
         },
         [customer, navigate]
@@ -82,44 +82,31 @@ export default function CustomersPage(){
             })
             const urlBla = window.URL.createObjectURL(new Blob([response.data]));
             setPicture(urlBla)
+            console.log("hier wird das photo geladen")
         })();
     }, [customer.imagesId]);
-
 
 
     async function ChangeCustomerStatusAssumed() {
         await axios.post("/api/customers/status/assumed", customer);
     }
+
     async function ChangeCustomerStatusDeclined() {
         await axios.post("/api/customers/status/declined", customer);
     }
 
-    async function deleteCustomer(){
+    async function deleteCustomer() {
         await axios.delete("/api/customers/" + customer.id)
     }
 
-    return(
-        <Box margin={"auto"}>
-            <Toolbar/>
-            <form onSubmit={async (e) => {
-                // FILE UPLOAD
-                e.preventDefault();
-
-                if (file) {
-                    const formData = new FormData();
-                    formData.append("file", file);
-
-                    const res = await axios.post("/api/files", formData);
-                    setPhoto(res.data)
-                    console.log(photo.id ,"photo id before")
-                    console.log(customer.imagesId, " images id before")
-                }
-
-            }}>
+    return (
+        <>
+            <Box margin={"auto"}>
+                <Toolbar/>
                 <input
                     ref={fileInputRef}
                     type={"file"}
-                    style={{ display: "none"}}
+                    style={{display: "none"}}
                     onChange={(e) => {
                         // FILE CHANGE
                         if (!e.target.files || e.target.files.length < 1) {
@@ -127,95 +114,78 @@ export default function CustomersPage(){
                             return;
                         }
                         setFile(e.target.files[0]);
+                        setPicture(URL.createObjectURL(e.target.files[0]))
 
                     }}
-                    accept={"image/png"}
-                />
-                <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                    <Button sx={{mt: 1, marginLeft: 53}} variant={"contained"} type={"submit"}>Submit</Button>
-                    <Button sx={{mt: 1, marginBottom: 1, marginLeft: 53}} variant={"contained"} onClick={() =>
-                    {fileInputRef.current?.click()}}>save</Button>
-                </Box>
+                    accept={"image/png"}/>
 
-            </form>
-
-
-
-            <Box component={"form"}
-                 onSubmit={EditCustomer}
-                 sx=
-                     {{
-                         display: "flex",
-                         flexDirection: "column",
-                         position: "static"
-                     }}>
+                <Box component={"form"} onSubmit={EditCustomer} sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    position: "static"}}>
 
                 <Box display={"flex"}
                      flexDirection={"row"}
                      justifyContent={"space-around"}
-                     >
+                >
                     <Box display={"flex"}
                          flexDirection={"column"}
                          justifyContent={"space-around"}>
-                    <TextField
-                        variant={"outlined"}
-                        size={"small"}
-                        label={"firstname"}
-                        margin={"normal"}
-                        value={customer.firstname}
-                        required={true}
-                        name={"firstname"}
-                        onChange={handleChange}
-                    />
+                        <TextField
+                            variant={"outlined"}
+                            size={"small"}
+                            label={"firstname"}
+                            margin={"normal"}
+                            value={customer.firstname}
+                            required={true}
+                            name={"firstname"}
+                            onChange={handleChange}/>
 
-                    <TextField
-                        variant={"outlined"}
-                        size={"small"}
-                        margin={"normal"}
-                        label={"surname"}
-                        value={customer.surname}
-                        required={true}
-                        name={"surname"}
-                        onChange={handleChange}
-                    />
+                        <TextField
+                            variant={"outlined"}
+                            size={"small"}
+                            margin={"normal"}
+                            label={"surname"}
+                            value={customer.surname}
+                            required={true}
+                            name={"surname"}
+                            onChange={handleChange}/>
 
-                    <TextField
-                        variant={"outlined"}
-                        size={"small"}
-                        label={"address"}
-                        margin={"normal"}
-                        value={customer.address}
-                        required={true}
-                        name={"address"}
-                        onChange={handleChange}
-                    />
+                        <TextField
+                            variant={"outlined"}
+                            size={"small"}
+                            label={"address"}
+                            margin={"normal"}
+                            value={customer.address}
+                            required={true}
+                            name={"address"}
+                            onChange={handleChange}/>
 
 
-                    <TextField
-                        variant={"outlined"}
-                        size={"small"}
-                        margin={"normal"}
-                        label={customer.postalCode}
-                        value={customer.postalCode}
-                        required={true}
-                        name={"postalCode"}
-                        onChange={handleChange}
-                    />
+                        <TextField
+                            variant={"outlined"}
+                            size={"small"}
+                            margin={"normal"}
+                            label={customer.postalCode}
+                            value={customer.postalCode}
+                            required={true}
+                            name={"postalCode"}
+                            onChange={handleChange}/>
 
-                    <TextField
-                        variant={"outlined"}
-                        size={"small"}
-                        label={"phonenumber"}
-                        margin={"normal"}
-                        value={customer.phonenumber}
-                        required={true}
-                        name={"phonenumber"}
-                        onChange={handleChange}
-                    />
+                        <TextField
+                            variant={"outlined"}
+                            size={"small"}
+                            label={"phonenumber"}
+                            margin={"normal"}
+                            value={customer.phonenumber}
+                            required={true}
+                            name={"phonenumber"}
+                            onChange={handleChange}/>
                     </Box>
                     <Box sx={{
                         border: "solid",
-                        mt: 2}}
+                        mt: 2
+                    }}
                          width={200}
                          height={200}
                     >
@@ -224,11 +194,38 @@ export default function CustomersPage(){
                             height: "100%",
                             objectFit: "contain"
                         }} src={picture} alt={picture}/>
+
+                        <Box sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center"
+                        }}>
+
+                            <Button sx={{mt: 1}} variant={"contained"} onClick={async (e) => {
+                                // FILE UPLOAD
+                                e.preventDefault();
+
+                                if (file) {
+                                    const formData = new FormData();
+                                    formData.append("file", file);
+
+                                    const res = await axios.post("/api/files", formData);
+                                    setPhoto(res.data);
+                                    setPicture("/api/files/" + res.data.id)
+                                    console.log("Hier ist der Post")
+                                }
+                            }}>Submit</Button>
+
+                            <Button sx={{mt: 1, marginBottom: 1}} variant={"contained"} onClick={() => {
+                                fileInputRef.current?.click();}}>save</Button>
                         </Box>
+
+
+                    </Box>
                 </Box>
 
                 <Box display={"flex"}
-                     justifyContent={"space-evenly"} >
+                     justifyContent={"space-evenly"}>
 
                     <TextField
                         sx={{marginLeft: 6}}
@@ -238,8 +235,7 @@ export default function CustomersPage(){
                         value={customer.credit}
                         required={true}
                         name={"credit"}
-                        onChange={handleChange}
-                    />
+                        onChange={handleChange}/>
 
                     <Typography mt={4}>Status = {customer.status}</Typography>
 
@@ -251,14 +247,13 @@ export default function CustomersPage(){
                         value={customer.reason}
                         required={true}
                         name={"reason"}
-                        onChange={handleChange}
-                    />
+                        onChange={handleChange}/>
 
                 </Box>
 
                 <Box
                     display={"flex"}
-                     flexDirection={"column"}
+                    flexDirection={"column"}
                     alignItems={"center"}
                 >
 
@@ -284,14 +279,13 @@ export default function CustomersPage(){
                     <TextField
                         sx={{width: 630}}
                         variant={"outlined"}
-                               multiline={true}
-                               rows={4}
-                               margin={"normal"}
-                               label={"notes"}
-                               value={customer.notes}
-                               name={"notes"}
-                               onChange={handleChange}
-                    />
+                        multiline={true}
+                        rows={4}
+                        margin={"normal"}
+                        label={"notes"}
+                        value={customer.notes}
+                        name={"notes"}
+                        onChange={handleChange}/>
 
                 </Box>
 
@@ -304,19 +298,21 @@ export default function CustomersPage(){
                     <Button variant={"contained"} sx={{marginRight: 5}} type={"submit"}>Edit Customer</Button>
 
                     <Button variant={"contained"} sx={{marginRight: 5}} onClick={() => {
-                        ChangeCustomerStatusAssumed().then(() => navigate("/"))
+                        ChangeCustomerStatusAssumed().then(() => navigate("/"));
                     }}>Assumed</Button>
 
                     <Button
                         variant={"contained"} sx={{marginRight: 5}} onClick={() => {
-                        ChangeCustomerStatusDeclined().then(() => navigate("/"))
+                        ChangeCustomerStatusDeclined().then(() => navigate("/"));
                     }}>Declined</Button>
 
-                    <Button variant={"contained"} sx={{marginRight: 5}} onClick={() =>{
+                    <Button variant={"contained"} sx={{marginRight: 5}} onClick={() => {
                         deleteCustomer().then(() => navigate("/"));
                     }}>Delete</Button>
                 </Box>
             </Box>
-        </Box>
+            </Box>
+        </>
+
     )
 }
