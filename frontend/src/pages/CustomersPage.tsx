@@ -82,6 +82,7 @@ export default function CustomersPage() {
             })
             const urlBla = window.URL.createObjectURL(new Blob([response.data]));
             setPicture(urlBla)
+            console.log("hier wird das photo geladen")
         })();
     }, [customer.imagesId]);
 
@@ -113,16 +114,15 @@ export default function CustomersPage() {
                             return;
                         }
                         setFile(e.target.files[0]);
+                        setPicture(URL.createObjectURL(e.target.files[0]))
 
                     }}
                     accept={"image/png"}/>
-                <Box component={"form"}
-                                     onSubmit={EditCustomer}
-                                     sx={{
-                                         display: "flex",
-                                         flexDirection: "column",
-                                         position: "static"
-                                     }}>
+
+                <Box component={"form"} onSubmit={EditCustomer} sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    position: "static"}}>
 
                 <Box display={"flex"}
                      flexDirection={"row"}
@@ -194,7 +194,13 @@ export default function CustomersPage() {
                             height: "100%",
                             objectFit: "contain"
                         }} src={picture} alt={picture}/>
-                        <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+
+                        <Box sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center"
+                        }}>
+
                             <Button sx={{mt: 1}} variant={"contained"} onClick={async (e) => {
                                 // FILE UPLOAD
                                 e.preventDefault();
@@ -205,8 +211,8 @@ export default function CustomersPage() {
 
                                     const res = await axios.post("/api/files", formData);
                                     setPhoto(res.data);
-                                    console.log(photo.id, "photo id before");
-                                    console.log(customer.imagesId, " images id before");
+                                    setPicture("/api/files/" + res.data.id)
+                                    console.log("Hier ist der Post")
                                 }
                             }}>Submit</Button>
 
