@@ -3,7 +3,7 @@ import React, {FormEvent, useCallback, useEffect, useState} from "react";
 import axios from "axios";
 import Customers from "../models/Customers";
 import {Box, Button, TextField, Typography} from "@mui/material";
-import Toolbar from "../components/Toolbar";
+import Toolbar from "../components/ToolbarComponent";
 import FileMetadata from "../models/FileMetadata";
 
 export default function CustomersPage() {
