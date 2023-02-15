@@ -72,7 +72,7 @@ export default function CustomersPage() {
             const response = await axios.get("/api/customers/" + id);
             setCustomer(response.data)
         })();
-    }, []);
+    }, [id]);
 
 
     useEffect(() => {
