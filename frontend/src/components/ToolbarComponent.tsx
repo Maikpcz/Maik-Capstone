@@ -3,7 +3,7 @@ import LogoutButton from "./LogoutButton";
 import {useNavigate} from "react-router-dom";
 
 
-export default function (){
+export default function ToolbarComponent(){
 
     const navigate = useNavigate()
 
