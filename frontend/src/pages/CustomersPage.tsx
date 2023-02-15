@@ -54,7 +54,7 @@ export default function CustomersPage() {
         if (photo.id != null) {
             customer.imagesId = photo.id
         }
-    }, [photo.id])
+    }, [photo])
 
 
     const EditCustomer = useCallback(
