@@ -31,13 +31,14 @@ import java.util.Optional;
                             "/api/app-users"
                     ).permitAll()
                     .antMatchers("/api/**")
+                    .antMatchers(
+                            "/api/**")
                     .authenticated()
                     .anyRequest()
                     .permitAll()
                     .and()
                     .build();
         }
-
 
     @Bean
     @Generated("*")
