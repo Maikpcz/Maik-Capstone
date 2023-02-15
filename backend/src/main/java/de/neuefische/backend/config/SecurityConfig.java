@@ -31,12 +31,14 @@ import java.util.Optional;
                             HttpMethod.POST,
                             "/api/app-users"
                     ).permitAll()
-                    .anyRequest()
+                    .antMatchers(
+                            "/api/**")
                     .authenticated()
+                    .anyRequest()
+                    .permitAll()
                     .and()
                     .build();
         }
-
 
     @Bean
     @Generated("*")
