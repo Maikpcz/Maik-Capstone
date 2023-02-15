@@ -52,9 +52,12 @@ export default function CustomersPage() {
 
     useEffect(() => {
         if (photo.id != null) {
-            customer.imagesId = photo.id
+            setCustomer({
+                ...customer,
+                imagesId: photo.id
+            })
         }
-    }, [photo])
+    }, [photo.id,customer])
 
 
     const EditCustomer = useCallback(
