@@ -13,7 +13,7 @@ public class Customer {
     private String postalCode;
     private long phonenumber;
     private String status;
-    private int credit;
+    private long credit;
     private String reason;
     private String description;
     private String notes;
